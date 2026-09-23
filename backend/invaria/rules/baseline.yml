@@ -1,0 +1,41 @@
+rules:
+  - id: invaria-eval-request
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Request input reaches eval.
+    mode: taint
+    pattern-sources:
+      - pattern-either:
+          - pattern: req.params
+          - pattern: req.body
+          - pattern: req.query
+    pattern-sinks:
+      - pattern: eval(...)
+  - id: invaria-command-request
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Request input reaches a shell execution function.
+    mode: taint
+    pattern-sources:
+      - pattern-either:
+          - pattern: req.params
+          - pattern: req.body
+          - pattern: req.query
+    pattern-sinks:
+      - pattern-either:
+          - pattern: exec(...)
+          - pattern: execSync(...)
+  - id: invaria-sql-request
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Request data reaches SQL statement text.
+    mode: taint
+    pattern-sources:
+      - pattern-either:
+          - pattern: req.params
+          - pattern: req.body
+          - pattern: req.query
+    pattern-sinks:
+      - patterns:
+          - pattern: $DB.query($QUERY, ...)
+          - focus-metavariable: $QUERY

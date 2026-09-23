@@ -1,0 +1,10 @@
+.git
+.venv
+.data
+app
+frontend
+artifacts
+*.docx
+*.log
+__pycache__
+.pytest_cache

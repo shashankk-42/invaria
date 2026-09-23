@@ -1,0 +1,17 @@
+:root {
+  --canvas: #f8f9fc; --surface: #ffffff; --surface-subtle: #f0f2f8; --ink: #161824; --muted: #60677c; --faint: #767e93;
+  --line: #dfe3ee; --line-strong: #bbc2d3; --accent: #4f46e5; --accent-hover: #3930bd; --accent-soft: #eeedff; --accent-ink: #353099;
+  --night: #11121a; --night-raised: #1b1d2a; --night-line: #343649; --night-muted: #a4abc1; --night-ink: #f6f7ff; --night-accent: #a6a3ff;
+  --danger: #bd344d; --danger-soft: #fff0f3; --warning: #9e511c; --warning-soft: #fff3e8;
+  --transparent: transparent; --scrim: #11121a80; --grid-line: #ffffff06; --glow: transparent; --nav-surface: #ffffffed;
+  --s-0: 0; --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.25rem; --s-6: 1.5rem; --s-7: 1.75rem; --s-8: 2rem; --s-10: 2.5rem; --s-12: 3rem; --s-14: 3.5rem; --s-16: 4rem; --s-20: 5rem; --s-24: 6rem; --s-28: 7rem; --s-32: 8rem;
+  --radius-xs: .25rem; --radius-sm: .5rem; --radius-md: .75rem; --radius-lg: 1rem; --radius-xl: 1.5rem; --radius-2xl: 2rem; --radius-pill: 999px;
+  --font-xs: .6875rem; --font-sm: .8125rem; --font-base: .9375rem; --font-md: 1.0625rem; --font-lg: 1.25rem; --font-xl: 1.5rem; --font-2xl: 2rem; --font-3xl: 2.5rem;
+  --font-hero: clamp(3.2rem, 7.2vw, 6.75rem); --font-heading: clamp(2.2rem, 4vw, 3.8rem); --font-stat: clamp(2.7rem, 4vw, 4rem); --font-workspace-title: clamp(2rem, 3.3vw, 3.5rem);
+  --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700; --weight-heavy: 800;
+  --leading-tight: 1.02; --leading-heading: 1.12; --leading-body: 1.65; --tracking-tight: -.055em; --tracking-heading: -.04em; --tracking-label: .12em;
+  --duration: 200ms; --duration-fast: 150ms; --duration-reveal: 600ms; --ease: cubic-bezier(.2,.65,.3,1); --transition-base: var(--duration) var(--ease); --transition-fast: var(--duration-fast) var(--ease); --lift: -3px; --press: 1px; --border-width: 1px; --focus-width: 3px; --focus-offset: 4px;
+  --shadow-sm: 0 2px 6px #17204708; --shadow-md: 0 8px 28px #1720470f; --shadow-lg: 0 24px 70px #11121a1a; --shadow-accent: var(--shadow-sm); --shadow-preview: 0 32px 100px #00000050;
+  --content-width: 1160px; --page-gutter: clamp(1.25rem, 4vw, 4rem); --nav-height: 84px; --control-height: 44px; --control-lg: 52px; --sidebar-width: 228px; --rail-width: 260px; --sheet-width: 610px; --graph-node-width: 190px; --graph-plot-min-height: 420px; --icon-sm: 16px; --icon-md: 20px; --icon-lg: 24px;
+  --background: var(--surface); --foreground: var(--ink); --primary: var(--accent); --primary-foreground: var(--surface); --secondary: var(--surface-subtle); --secondary-foreground: var(--ink); --muted-foreground: var(--muted); --accent-foreground: var(--accent-ink); --destructive: var(--danger); --border: var(--line); --input: var(--line); --ring: var(--accent); --popover: var(--surface); --popover-foreground: var(--ink); --card: var(--surface); --card-foreground: var(--ink);
+}

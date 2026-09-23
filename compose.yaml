@@ -1,0 +1,46 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: invaria
+      POSTGRES_PASSWORD: ${INVARIA_DB_PASSWORD:-invaria-local-dev}
+      POSTGRES_DB: invaria
+    ports:
+      - '127.0.0.1:15432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U invaria -d invaria']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  api:
+    build: .
+    environment:
+      INVARIA_DATABASE_URL: postgresql+psycopg://invaria:${INVARIA_DB_PASSWORD:-invaria-local-dev}@db:5432/invaria
+      INVARIA_OLLAMA_URL: http://host.docker.internal:11434
+      INVARIA_REASONING_MODEL: ${INVARIA_REASONING_MODEL:-gemma4:e4b}
+      INVARIA_EMBEDDING_MODEL: embeddinggemma
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - '127.0.0.1:8001:8000'
+    volumes:
+      - scan-data:/app/.data
+    depends_on:
+      db:
+        condition: service_healthy
+    security_opt: ['no-new-privileges:true']
+    cap_drop: ['ALL']
+    mem_limit: 2g
+    cpus: 2
+  web:
+    build: ./frontend
+    ports:
+      - '127.0.0.1:3001:3000'
+    depends_on: [api]
+    security_opt: ['no-new-privileges:true']
+    cap_drop: ['ALL']
+volumes:
+  postgres-data:
+  scan-data:

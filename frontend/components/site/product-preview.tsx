@@ -1,0 +1,9 @@
+import { ArrowUpRight, Braces, Check, FileCode2, GitBranch, Shield, Sparkles } from 'lucide-react';
+
+export function ProductPreview() {
+  return <div className="product-preview" aria-label="Illustrative authorization fixture report">
+    <div className="preview-top"><div className="preview-dots"><i /><i /><i /></div><span>invaria / workspace</span><span className="preview-label">ILLUSTRATIVE REPORT</span></div>
+    <div className="preview-layout"><aside className="preview-sidebar"><span className="preview-brand">invaria</span><span className="preview-selected"><Shield size={14} /> Findings <b>1</b></span><span><GitBranch size={14} /> Security graph</span><span><FileCode2 size={14} /> Coverage & audit</span><small>YOUR CODE. YOUR CONTEXT.</small></aside>
+      <div className="preview-content"><div className="preview-title"><div><span className="kicker">AUTHORIZATION FIXTURE</span><h3>Every finding. A clear reason.</h3></div><span className="preview-complete"><Check size={12} /> Complete</span></div><div className="preview-metrics"><div><strong>01</strong><span>Potential finding</span></div><div><strong>02</strong><span>Evidence references</span></div><div><strong>01</strong><span>Endpoint mapped</span></div></div><div className="preview-context"><Sparkles size={17} /><div><strong>More context. Better decisions.</strong><p>Understand the product before you investigate the risk.</p></div></div><div className="preview-finding"><span className="icon-tile"><Braces size={20} /></span><div><strong>Who can access this order?</strong><p>GET /api/orders/:id <span>· controller.ts</span></p></div><span className="risk-tag">HIGH</span><ArrowUpRight size={17} /></div><div className="preview-code"><span>03</span><code>const order = await Order.findByPk(req.params.id);</code></div><div className="preview-foot"><span><Check size={12} /> Source references checked</span><span>Ready for human review</span></div></div></div>
+  </div>;
+}
