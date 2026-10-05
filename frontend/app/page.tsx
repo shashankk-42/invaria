@@ -1,21 +1,45 @@
 import Link from 'next/link';
-import { ArrowUpRight, ArrowRight, Braces, GitBranch, Fingerprint, ScanLine, Layers, FileCheck2, ChevronRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, BadgeCheck, Building2, GitBranch, Landmark, ScanLine, ShoppingCart, Sparkles } from 'lucide-react';
 import { ProductPreview } from '@/components/site/product-preview';
 import { Cta } from '@/components/site/cta';
 
-const features = [
-  { icon: GitBranch, number: '01', title: 'Connect the dots.', text: 'Follow supported routes, handlers, and data lookups through a readable security graph.', link: 'Explore the graph' },
-  { icon: Fingerprint, number: '02', title: 'See the evidence.', text: 'Inspect the exact source locations behind potential authorization, injection, and credential issues.', link: 'Inside a finding' },
-  { icon: Layers, number: '03', title: 'Bring your context.', text: 'Add product documents and let a local model help explain what the application appears to do.', link: 'Meet your workspace' },
+const differentiators = [
+  ['01', 'Reason about product rules.', 'INVARIANT looks for request-controlled changes to sensitive values and states—the operations your customers, revenue, and product promises depend on.'],
+  ['02', 'Keep every claim inspectable.', 'Potential risks stay connected to the route, operation, evidence gate, assumptions, and controls a reviewer can actually inspect.'],
+  ['03', 'Explain the consequence clearly.', 'Local Gemma translates evidence into advisory business context. It never turns a possibility into proof.'],
 ];
+
+const audiences = [
+  { icon: Sparkles, title: 'AI-built SaaS', text: 'Move quickly without losing sight of tenant boundaries, ownership, and server-side rules.' },
+  { icon: ShoppingCart, title: 'Commerce & marketplaces', text: 'Review the sensitive paths around discounts, inventory, orders, refunds, and account balances.' },
+  { icon: Landmark, title: 'Regulated products', text: 'Give security and product reviewers one evidence trail for the business operations that matter.' },
+];
+
 export default function LandingPage() {
   return <main id="main-content" className="marketing-page">
-    <section className="landing-hero dark-section"><div className="hero-grid" aria-hidden="true" /><div className="hero-copy"><span className="release-pill"><span /> YOUR CODE, IN CONTEXT <ChevronRight size={12} /></span><h1>Trusted findings.<br />Safer <span>Software.</span></h1><p>Security findings are only the beginning. Connect your code, its context, and the evidence—so you can decide what matters.</p><div className="hero-actions"><Link href="/workspace" className="button button-primary">Analyze a repository <ArrowUpRight size={18} /></Link><Link href="/product" className="button button-dark-outline">Explore the product <ArrowRight size={17} /></Link></div><small>Local-first. Evidence-led. Human-reviewed.</small></div><div className="hero-preview"><ProductPreview /></div><div className="hero-bottom"><span>FROM SOURCE TO UNDERSTANDING</span><span>Built for the people who ship code <ArrowRight size={14} /></span></div></section>
-    <section className="technology-strip" aria-label="Supported ecosystem"><span>MADE FOR YOUR STACK</span><div><Braces size={21} /> JavaScript</div><div><span className="tech-monogram">TS</span> TypeScript</div><div>express<span className="text-muted">.js</span></div><div><span className="tech-monogram">◇</span> Ollama</div><div><GitBranch size={20} /> GitHub</div></section>
-    <section className="section-container intro-section" data-reveal><div><span className="kicker">THE BIGGER PICTURE</span><h2>Don’t just find a risk.<br /><span className="text-muted">Understand why it matters.</span></h2></div><p>Invaria turns a public repository into a connected view of its code and potential security issues. Clear evidence and product context bring you closer to an informed decision.</p></section>
-    <section className="section-container feature-grid" aria-label="Product features">{features.map(({ icon: Icon, ...f }) => <article key={f.number} className="feature-card" data-reveal><div className="feature-top"><Icon size={25} /><span>{f.number}</span></div><h3>{f.title}</h3><p>{f.text}</p><Link href="/product" className="text-link">{f.link}<ArrowUpRight size={16} /></Link></article>)}</section>
-    <section className="section-container workflow-section" data-reveal><div className="section-heading"><span className="kicker">A CLEAR PATH FORWARD</span><h2>From repository<br />to a reasoned review.</h2><p>A focused workflow. A traceable result.</p></div><div className="workflow-steps">{[{ icon: ScanLine, title: 'Bring the source.', text: 'Choose a public GitHub repository or a bundled fixture. Add documents for business context.' }, { icon: GitBranch, title: 'Follow the connections.', text: 'See supported endpoints, data access, and the source evidence behind each potential finding.' }, { icon: FileCheck2, title: 'Make the call.', text: 'Review, confirm, or dismiss findings. Save your reasoning and export the report.' }].map(({ icon: Icon, title, text }, i) => <article key={title}><span className="step-number">0{i + 1}</span><div><h3>{title}</h3><p>{text}</p></div><Icon size={22} /></article>)}</div></section>
-    <section className="proof-section"><div className="section-container" data-reveal><div className="section-heading"><span className="kicker">SMALL SCOPE. VISIBLE EVIDENCE.</span><h2>Built to be inspected.</h2><p>Developer preview capabilities. No inflated promises.</p></div><div className="proof-grid"><div><strong>3<span> / checks</span></strong><p>Authorization, injection & credentials</p></div><div><strong>6<span> / fixtures</span></strong><p>Vulnerable and fixed test examples</p></div><div><strong>2<span> / exports</span></strong><p>JSON and Markdown reports</p></div><div><strong>100<span>% local AI</span></strong><p>Optional model inference through Ollama</p></div></div></div></section>
-    <div className="section-container"><Cta /></div>
+    <section className="landing-hero dark-section">
+      <div className="hero-grid" aria-hidden="true" />
+      <div className="hero-copy">
+        <span className="release-pill"><span /> INVARIANT-POWERED BUSINESS RISK REVIEW</span>
+        <h1>Protect the business logic that makes your <span>product work.</span></h1>
+        <p>Invaria connects observed code paths to the product operations they could affect, then gives every reviewer the evidence needed to make a confident call.</p>
+        <div className="hero-actions"><Link href="/workspace?lens=business" className="button button-primary">Try the local preview <ArrowUpRight size={18} /></Link><Link href="/invariant" className="button button-dark-outline">Meet INVARIANT <ArrowRight size={17} /></Link></div>
+        <small>Evidence-first. Local model. Human-reviewed.</small>
+      </div>
+      <div className="hero-preview"><ProductPreview /></div>
+      <div className="hero-bottom"><span>FROM CODE PATH TO BUSINESS CONSEQUENCE</span><span>Designed for people who ship product <ArrowRight size={14} /></span></div>
+    </section>
+
+    <section className="technology-strip" aria-label="Invaria capabilities"><span>BUILT FOR A REVIEW THAT CONNECTS</span><div><GitBranch size={21} /> Source paths</div><div><ScanLine size={21} /> Evidence gates</div><div><span className="tech-monogram">◇</span> Local Gemma</div><div><BadgeCheck size={20} /> Human decisions</div></section>
+
+    <section className="section-container intro-section" data-reveal><div><span className="kicker">BEYOND A LINE NUMBER</span><h2>Show the operation.<br /><span className="text-muted">Explain the exposure.</span></h2></div><p>A generic finding says a line of code looks risky. Invaria shows the request path, the sensitive product operation, the potential business consequence, and the exact evidence behind that review.</p></section>
+
+    <section className="section-container feature-grid" aria-label="Why Invaria">{differentiators.map(([number, title, text]) => <article key={number} className="feature-card" data-reveal><div className="feature-top"><Building2 size={25} /><span>{number}</span></div><h3>{title}</h3><p>{text}</p><Link href="/invariant" className="text-link">How INVARIANT works <ArrowUpRight size={16} /></Link></article>)}</section>
+
+    <section className="section-container workflow-section" data-reveal><div className="section-heading"><span className="kicker">ONE SCAN. TWO LENSES.</span><h2>Business clarity<br />with technical proof.</h2><p>Start with what the risk could mean, then move directly into the evidence.</p></div><div className="workflow-steps">{[{ title: 'Map the product path.', text: 'Bring a supported repository. Invaria maps routes, inputs, operations, and data access.' }, { title: 'Test an invariant.', text: 'INVARIANT applies an evidence gate before a candidate becomes a review-ready potential risk.' }, { title: 'Choose the next step.', text: 'Business risk gives the plain-language consequence; technical evidence provides the source trail.' }].map(({ title, text }, i) => <article key={title}><span className="step-number">0{i + 1}</span><div><h3>{title}</h3><p>{text}</p></div><ArrowRight size={22} /></article>)}</div></section>
+
+    <section className="proof-section"><div className="section-container" data-reveal><div className="section-heading"><span className="kicker">WHO IT IS FOR</span><h2>Built around the operations<br />your product cannot get wrong.</h2></div><div className="audience-grid">{audiences.map(({ icon: Icon, title, text }) => <article key={title}><Icon size={22} /><h3>{title}</h3><p>{text}</p></article>)}</div><Link href="/customers" className="text-link audience-link">See the customer fit <ArrowUpRight size={16} /></Link></div></section>
+
+    <div className="section-container"><Cta title={'Protect the logic.\nKeep the evidence.'} /></div>
   </main>;
 }

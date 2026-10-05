@@ -13,7 +13,7 @@ from sqlalchemy import select
 
 from .config import settings
 from .documents import save_uploads, write_manifest
-from .ingestion import parse_github_url
+from .ingestion import parse_github_url, verify_public_github_repository
 from .models import Feedback, ScanRequest
 from .overview import generate_business_impact, generate_overview
 from .pipeline import execute_scan
@@ -125,6 +125,7 @@ async def create_scan(request: Request):
     if body.source == "github":
         try:
             parse_github_url(body.repository)
+            verify_public_github_repository(body.repository)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
     elif body.repository not in {f["id"] for f in fixtures()}:
@@ -309,6 +310,16 @@ def export_scan(id: str, format: str = "json"):
         "Static candidates require manual review; this report is not proof of exploitability.",
         "",
     ]
+    algorithm = scan.get("algorithm", {})
+    if algorithm:
+        lines += [
+            "## Analysis algorithm",
+            "",
+            f"{algorithm.get('code_name', 'Unknown')} {algorithm.get('version', '')}".strip(),
+            "",
+            algorithm.get("policy", ""),
+            "",
+        ]
     overview = scan.get("product_overview", {})
     if overview.get("status") == "ready":
         lines += ["## Product overview", "", overview["summary"], ""]
@@ -344,6 +355,18 @@ def export_scan(id: str, format: str = "json"):
             "Impact: " + finding["impact"],
             "",
         ]
+        decision = finding.get("algorithm")
+        if decision:
+            gate = decision.get("evidence_gate", {})
+            lines += [
+                "Algorithm decision: " + decision.get("decision", "unknown"),
+                "",
+                "Evidence gate: "
+                + ("passed" if gate.get("passed") else "not passed")
+                + "; observed "
+                + ", ".join(gate.get("observed_kinds", [])),
+                "",
+            ]
         if impact := impacts_by_finding.get(finding["id"]):
             lines += [
                 "Potential business impact: " + impact["business_impact"],

@@ -1,0 +1,235 @@
+{"kind":"deck","id":"pr/hy8b97","name":"Deck"}
+{"kind":"layout","layoutId":"0b744449-8d36-49bb-a6ca-3168a713997b","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"34ad5cc7-5f53-4db2-864c-bd4ecabe4667","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/u7coi7","slide":1,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":24}
+{"kind":"shape","id":"sh/gbihgzed","slide":1,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/fa9gnuxs","slide":1,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/ep0zepwn","slide":1,"text":"Sources: Invaria blueprint and INVARIANT engine design","textPreview":"Sources: Invaria blueprint and INVARIANT engine design","textChars":54,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/to7ylkf2","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/snyhcfeh","slide":1,"bbox":[72,54,300,28]}
+{"kind":"textbox","id":"sh/rmpgjuxw","slide":1,"text":"PROBLEM STATEMENT & MARKET GAP","textPreview":"PROBLEM STATEMENT & MARKET GAP","textChars":30,"textLines":1,"bbox":[82,60,280,16]}
+{"kind":"textbox","id":"sh/6lgfapwb","slide":1,"text":"Security failures happen\nwhen code breaks business rules","textPreview":"Security failures happen | when code breaks business rules","textChars":56,"textLines":2,"bbox":[72,103,635,130]}
+{"kind":"textbox","id":"sh/dkbyxov6","slide":1,"text":"Modern applications often authenticate users correctly yet fail to keep authorization, ownership, and workflow constraints consistent across routes, services, and data stores.","textPreview":"Modern applications often authenticate users correctly yet fail to keep authorization, ownership, and workflow constraints consistent acr...","textChars":175,"textLines":1,"bbox":[72,252,625,78]}
+{"kind":"shape","id":"sh/cj2hojel","slide":1,"bbox":[72,362,590,0]}
+{"kind":"textbox","id":"sh/yt0ne1wr","slide":1,"text":"THE REVIEW GAP","textPreview":"THE REVIEW GAP","textChars":14,"textLines":1,"bbox":[72,395,235,18]}
+{"kind":"textbox","id":"sh/zu9o76dc","slide":1,"text":"A line-level alert or a general coding-model answer rarely preserves the application policy, the inspected evidence, and the remaining uncertainty in one place.","textPreview":"A line-level alert or a general coding-model answer rarely preserves the application policy, the inspected evidence, and the remaining un...","textChars":160,"textLines":1,"bbox":[72,425,580,67]}
+{"kind":"textbox","id":"sh/kvi5gbex","slide":1,"text":"Invaria treats a security finding as a structured case: expected invariant, source-backed path, evidence gate, and a human review decision.","textPreview":"Invaria treats a security finding as a structured case: expected invariant, source-backed path, evidence gate, and a human review decision.","textChars":139,"textLines":1,"bbox":[72,520,600,52]}
+{"kind":"shape","id":"sh/lwr69gvi","slide":1,"bbox":[752,81,456,500]}
+{"kind":"textbox","id":"sh/apgna1wv","slide":1,"text":"INVARIA'S UNIT OF WORK","textPreview":"INVARIA'S UNIT OF WORK","textChars":22,"textLines":1,"bbox":[790,120,300,18]}
+{"kind":"textbox","id":"sh/bq9436dg","slide":1,"text":"The security case","textPreview":"The security case","textChars":17,"textLines":1,"bbox":[790,157,345,46]}
+{"kind":"textbox","id":"sh/cri5cbe1","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[790,235,30,20]}
+{"kind":"textbox","id":"sh/xsr65gv6","slide":1,"text":"Policy","textPreview":"Policy","textChars":6,"textLines":1,"bbox":[834,232,100,21]}
+{"kind":"textbox","id":"sh/ulknm5wz","slide":1,"text":"What must always be true","textPreview":"What must always be true","textChars":24,"textLines":1,"bbox":[834,258,310,25]}
+{"kind":"shape","id":"sh/vmtofqdk","slide":1,"bbox":[790,288,340,0]}
+{"kind":"textbox","id":"sh/r6lk7itw","slide":1,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[790,302,30,20]}
+{"kind":"textbox","id":"sh/65c3excb","slide":1,"text":"Path","textPreview":"Path","textChars":4,"textLines":1,"bbox":[834,299,100,21]}
+{"kind":"textbox","id":"sh/tsn29sb2","slide":1,"text":"How a request reaches sensitive data or action","textPreview":"How a request reaches sensitive data or action","textChars":46,"textLines":1,"bbox":[834,325,310,25]}
+{"kind":"shape","id":"sh/s7elgnuh","slide":1,"bbox":[790,355,340,0]}
+{"kind":"textbox","id":"sh/fu5kb2t8","slide":1,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[790,369,30,20]}
+{"kind":"textbox","id":"sh/etw3ixcn","slide":1,"text":"Proof","textPreview":"Proof","textChars":5,"textLines":1,"bbox":[834,366,100,21]}
+{"kind":"textbox","id":"sh/1wn2dcby","slide":1,"text":"Which source evidence supports the hypothesis","textPreview":"Which source evidence supports the hypothesis","textChars":45,"textLines":1,"bbox":[834,392,310,25]}
+{"kind":"shape","id":"sh/gvelk7ut","slide":1,"bbox":[790,422,340,0]}
+{"kind":"textbox","id":"sh/3y5kf2t4","slide":1,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[790,436,30,20]}
+{"kind":"textbox","id":"sh/2xw3mhcj","slide":1,"text":"Decision","textPreview":"Decision","textChars":8,"textLines":1,"bbox":[834,433,100,21]}
+{"kind":"textbox","id":"sh/k3y1w7qx","slide":1,"text":"What remains for a reviewer to validate","textPreview":"What remains for a reviewer to validate","textChars":39,"textLines":1,"bbox":[834,459,310,25]}
+{"kind":"textbox","id":"sh/l4725cri","slide":1,"text":"Not a claim of a breach. A traceable basis for review.","textPreview":"Not a claim of a breach. A traceable basis for review.","textChars":54,"textLines":1,"bbox":[790,530,355,30]}
+{"kind":"notes","id":"nt/u7coi7","slide":1,"text":"Source: Invaria Engineering & Product Blueprint; docs/INVARIANT_ENGINE.md.\n\nTalking points: The core problem is not only finding suspicious code. A reviewer needs to see what business rule might be broken, how the source path supports the concern, and what remains unknown. Invaria is built around that security case."}
+{"kind":"slide","id":"sl/w4en9j","slide":2,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":15}
+{"kind":"shape","id":"sh/zutsfml4","slide":2,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/0vm9or2p","slide":2,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/lwvahw3a","slide":2,"text":"Source: Grand View Research, Application Security Market, 2026–2033","textPreview":"Source: Grand View Research, Application Security Market, 2026–2033","textChars":67,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/mx4bqhkv","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/nydsjmlg","slide":2,"bbox":[72,54,180,28]}
+{"kind":"textbox","id":"sh/8zmtsr2l","slide":2,"text":"MARKET OPPORTUNITY","textPreview":"MARKET OPPORTUNITY","textChars":18,"textLines":1,"bbox":[82,60,160,16]}
+{"kind":"textbox","id":"sh/90valw36","slide":2,"text":"Application security is a growing\ncategory with a clear entry point","textPreview":"Application security is a growing | category with a clear entry point","textChars":67,"textLines":2,"bbox":[72,102,670,105]}
+{"kind":"textbox","id":"sh/210rexkb","slide":2,"text":"Invaria begins with API-driven products where a broken ownership or business-flow rule can directly affect money, tenant data, or regulated records.","textPreview":"Invaria begins with API-driven products where a broken ownership or business-flow rule can directly affect money, tenant data, or regulat...","textChars":148,"textLines":1,"bbox":[72,228,620,55]}
+{"kind":"textbox","id":"sh/n6l8bqdw","slide":2,"text":"Global application security market, USD billions","textPreview":"Global application security market, USD billions","textChars":48,"textLines":1,"bbox":[72,300,520,18]}
+{"kind":"shape","id":"sh/m5crilcb","slide":2,"bbox":[736,104,472,464]}
+{"kind":"textbox","id":"sh/983qd0vm","slide":2,"text":"WHERE INVARIA FITS","textPreview":"WHERE INVARIA FITS","textChars":18,"textLines":1,"bbox":[776,142,250,18]}
+{"kind":"textbox","id":"sh/87u9kvu1","slide":2,"text":"Initial wedge","textPreview":"Initial wedge","textChars":13,"textLines":1,"bbox":[776,180,210,28]}
+{"kind":"textbox","id":"sh/zi187qdk","slide":2,"text":"JavaScript and TypeScript teams building multi-tenant SaaS and API products, especially when a dedicated application-security team is unavailable.","textPreview":"JavaScript and TypeScript teams building multi-tenant SaaS and API products, especially when a dedicated application-security team is una...","textChars":146,"textLines":1,"bbox":[776,220,360,78]}
+{"kind":"shape","id":"sh/yhsrelcz","slide":2,"bbox":[776,328,350,0]}
+{"kind":"textbox","id":"sh/l4jq90vq","slide":2,"text":"Why now","textPreview":"Why now","textChars":7,"textLines":1,"bbox":[776,357,210,28]}
+{"kind":"textbox","id":"sh/03a9gvu5","slide":2,"text":"AI-assisted delivery speeds up code creation. Security review still needs evidence that a system preserves its access and workflow rules.","textPreview":"AI-assisted delivery speeds up code creation. Security review still needs evidence that a system preserves its access and workflow rules.","textChars":137,"textLines":1,"bbox":[776,397,360,64]}
+{"kind":"shape","id":"sh/be1836do","slide":2,"bbox":[776,490,350,0]}
+{"kind":"textbox","id":"sh/qdsra1c3","slide":2,"text":"Market context","textPreview":"Market context","textChars":14,"textLines":1,"bbox":[776,519,180,19]}
+{"kind":"textbox","id":"sh/e98rm1gv","slide":2,"text":"$10.6B in 2025  ·  $42.1B projected for 2033  ·  18.8% CAGR","textPreview":"$10.6B in 2025  ·  $42.1B projected for 2033  ·  18.8% CAGR","textChars":59,"textLines":1,"bbox":[776,548,380,22]}
+{"kind":"textbox","id":"sh/fahsv6xg","slide":2,"text":"Category sizing is market context, not a revenue forecast for Invaria.","textPreview":"Category sizing is market context, not a revenue forecast for Invaria.","textChars":70,"textLines":1,"bbox":[72,624,945,19]}
+{"kind":"chart","id":"ch/3q5ofu1s","slide":2,"name":"","chartType":"bar","bbox":[72,322,580,286]}
+{"kind":"notes","id":"nt/w4en9j","slide":2,"text":"Source: Grand View Research, ‘Application Security Market (2026–2033)’, accessed 24 September 2026: https://www.grandviewresearch.com/industry-analysis/application-security-market.\n\nData: Global application security market $10.6B in 2025, $12.6B estimate in 2026, $42.1B projected in 2033, CAGR 18.8% (2026–2033).\n\nTalking points: The market number gives category context. Our initial addressable use case is narrower: API-driven, multi-tenant applications with sensitive data or sensitive business actions."}
+{"kind":"slide","id":"sl/taqp30","slide":3,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":22}
+{"kind":"shape","id":"sh/1cfqhc3m","slide":3,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/ep4rmh4v","slide":3,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/fqd8f2lg","slide":3,"text":"Screenshot: live local Invaria workspace, captured 24 Sep 2026","textPreview":"Screenshot: live local Invaria workspace, captured 24 Sep 2026","textChars":62,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/of69srmd","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/pgfalw3i","slide":3,"bbox":[72,54,128,28]}
+{"kind":"textbox","id":"sh/2dorqh47","slide":3,"text":"THE PLATFORM","textPreview":"THE PLATFORM","textChars":12,"textLines":1,"bbox":[82,60,108,16]}
+{"kind":"textbox","id":"sh/3exsjmls","slide":3,"text":"Invaria turns a repository into\nan inspectable security case","textPreview":"Invaria turns a repository into | an inspectable security case","textChars":60,"textLines":2,"bbox":[72,102,620,98]}
+{"kind":"textbox","id":"sh/cjq9wrm9","slide":3,"text":"The product connects a repository snapshot to application structure, evidence-backed security hypotheses, and a review workflow that speaks in technical and business terms.","textPreview":"The product connects a repository snapshot to application structure, evidence-backed security hypotheses, and a review workflow that spea...","textChars":172,"textLines":1,"bbox":[72,223,592,64]}
+{"kind":"textbox","id":"sh/p43id4zy","slide":3,"text":"LIVE PRODUCT VIEW","textPreview":"LIVE PRODUCT VIEW","textChars":17,"textLines":1,"bbox":[704,454,190,18]}
+{"kind":"textbox","id":"sh/o3u14zyd","slide":3,"text":"A reviewer can start from business impact, then open the decision ledger and exact source evidence.","textPreview":"A reviewer can start from business impact, then open the decision ledger and exact source evidence.","textChars":99,"textLines":1,"bbox":[704,480,470,38]}
+{"kind":"textbox","id":"sh/32l0buhs","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,360,26,20]}
+{"kind":"textbox","id":"sh/21cz2pg7","slide":3,"text":"Snapshot","textPreview":"Snapshot","textChars":8,"textLines":1,"bbox":[72,388,136,23]}
+{"kind":"textbox","id":"sh/dsnih4zu","slide":3,"text":"Immutable code input","textPreview":"Immutable code input","textChars":20,"textLines":1,"bbox":[72,417,135,38]}
+{"kind":"shape","id":"sh/cre18zy9","slide":3,"bbox":[183,372,35,0]}
+{"kind":"textbox","id":"sh/bq50feho","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[226,360,26,20]}
+{"kind":"textbox","id":"sh/qpcj69g3","slide":3,"text":"Model","textPreview":"Model","textChars":5,"textLines":1,"bbox":[226,388,136,23]}
+{"kind":"textbox","id":"sh/twji5kzq","slide":3,"text":"Routes, handlers, data paths","textPreview":"Routes, handlers, data paths","textChars":28,"textLines":1,"bbox":[226,417,135,38]}
+{"kind":"shape","id":"sh/svahwfi5","slide":3,"bbox":[337,372,35,0]}
+{"kind":"textbox","id":"sh/kfe1cfq1","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[380,360,26,20]}
+{"kind":"textbox","id":"sh/lgnilk7m","slide":3,"text":"Investigate","textPreview":"Investigate","textChars":11,"textLines":1,"bbox":[380,388,136,23]}
+{"kind":"textbox","id":"sh/ydwja58v","slide":3,"text":"Rule-specific hypotheses","textPreview":"Rule-specific hypotheses","textChars":24,"textLines":1,"bbox":[380,417,135,38]}
+{"kind":"shape","id":"sh/je50japg","slide":3,"bbox":[491,372,35,0]}
+{"kind":"textbox","id":"sh/sje1gz6x","slide":3,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[534,360,26,20]}
+{"kind":"textbox","id":"sh/tk7ipk7i","slide":3,"text":"Review","textPreview":"Review","textChars":6,"textLines":1,"bbox":[534,388,136,23]}
+{"kind":"textbox","id":"sh/6hwjep8r","slide":3,"text":"Evidence, uncertainty, action","textPreview":"Evidence, uncertainty, action","textChars":29,"textLines":1,"bbox":[534,417,135,38]}
+{"kind":"shape","id":"sh/7i50nupc","slide":3,"bbox":[72,498,560,0]}
+{"kind":"textbox","id":"sh/g7y1kz69","slide":3,"text":"Where it differs from a standalone coding assistant","textPreview":"Where it differs from a standalone coding assistant","textChars":51,"textLines":1,"bbox":[72,524,560,24]}
+{"kind":"textbox","id":"sh/h87it47e","slide":3,"text":"Invaria makes the policy, evidence gate, coverage boundary, and human decision persistent product objects. The model remains a replaceable, advisory component.","textPreview":"Invaria makes the policy, evidence gate, coverage boundary, and human decision persistent product objects. The model remains a replaceabl...","textChars":159,"textLines":1,"bbox":[72,558,565,52]}
+{"kind":"image","id":"im/gret8f6h","slide":3,"name":"","geometry":"roundRect","alt":"Live Invaria business-risk workspace","bbox":[696,89,512,355]}
+{"kind":"notes","id":"nt/taqp30","slide":3,"text":"Screenshot: live local Invaria workspace captured 24 September 2026.\n\nSources for competitive boundary: OpenAI, ‘Codex Security: now in research preview’, https://openai.com/index/codex-security-now-in-research-preview/; Anthropic, ‘Making frontier cybersecurity capabilities available to defenders’, https://www.anthropic.com/news/claude-code-security.\n\nTalking points: Codex Security and Claude Code Security now offer serious security analysis. Invaria should not claim an unproven performance advantage. Its product differentiation is the versioned, inspectable policy and decision ledger that do not depend on one model provider."}
+{"kind":"slide","id":"sl/kflxkt","slide":4,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":23}
+{"kind":"shape","id":"sh/0ny5c3e5","slide":4,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/fmp4jyxk","slide":4,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/elg3atwz","slide":4,"text":"Source: docs/INVARIANT_ENGINE.md and current implementation","textPreview":"Source: docs/INVARIANT_ENGINE.md and current implementation","textChars":59,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/pc7m98fm","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/oby5gne1","slide":4,"bbox":[72,54,150,28]}
+{"kind":"textbox","id":"sh/nap4nixg","slide":4,"text":"CORE ALGORITHM","textPreview":"CORE ALGORITHM","textChars":14,"textLines":1,"bbox":[82,60,130,16]}
+{"kind":"textbox","id":"sh/29gnedwb","slide":4,"text":"INVARIANT: a security-decision engine","textPreview":"INVARIANT: a security-decision engine","textChars":37,"textLines":1,"bbox":[72,105,785,53]}
+{"kind":"textbox","id":"sh/xgrmdsfy","slide":4,"text":"Invariant-based Networked Verification and Attack-path Reasoning defines the conditions under which a code pattern becomes a reported finding.","textPreview":"Invariant-based Networked Verification and Attack-path Reasoning defines the conditions under which a code pattern becomes a reported fin...","textChars":142,"textLines":1,"bbox":[72,174,895,43]}
+{"kind":"shape","id":"sh/cfi5kned","slide":4,"bbox":[72,286,190,194]}
+{"kind":"textbox","id":"sh/u1sveds3","slide":4,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[90,307,45,18]}
+{"kind":"textbox","id":"sh/f21cnito","slide":4,"text":"Model","textPreview":"Model","textChars":5,"textLines":1,"bbox":[90,343,154,27]}
+{"kind":"textbox","id":"sh/gnadgna9","slide":4,"text":"Parse routes, functions, queries, identities, and trust boundaries","textPreview":"Parse routes, functions, queries, identities, and trust boundaries","textChars":66,"textLines":1,"bbox":[90,385,151,68]}
+{"kind":"shape","id":"sh/hojupsbe","slide":4,"bbox":[298,286,190,194]}
+{"kind":"textbox","id":"sh/2pcvixsz","slide":4,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[316,307,45,18]}
+{"kind":"textbox","id":"sh/3qlcritk","slide":4,"text":"Hypothesis","textPreview":"Hypothesis","textChars":10,"textLines":1,"bbox":[316,343,154,27]}
+{"kind":"textbox","id":"sh/4rudkna5","slide":4,"text":"Ask a rule-specific question, such as BOLA001","textPreview":"Ask a rule-specific question, such as BOLA001","textChars":45,"textLines":1,"bbox":[316,385,151,68]}
+{"kind":"shape","id":"sh/ps3utsbq","slide":4,"bbox":[524,286,190,194]}
+{"kind":"textbox","id":"sh/it8b6tsv","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[542,307,45,18]}
+{"kind":"textbox","id":"sh/juhcfytg","slide":4,"text":"Evidence","textPreview":"Evidence","textChars":8,"textLines":1,"bbox":[542,343,154,27]}
+{"kind":"textbox","id":"sh/nyxsnu98","slide":4,"text":"Trace request flow and collect source snippets and controls","textPreview":"Trace request flow and collect source snippets and controls","textChars":59,"textLines":1,"bbox":[542,385,151,68]}
+{"kind":"shape","id":"sh/mx4rep8n","slide":4,"bbox":[750,286,190,194]}
+{"kind":"textbox","id":"sh/90fap4re","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[768,307,45,18]}
+{"kind":"textbox","id":"sh/8z69gzqt","slide":4,"text":"Gate","textPreview":"Gate","textChars":4,"textLines":1,"bbox":[768,343,154,27]}
+{"kind":"textbox","id":"sh/zadsju9w","slide":4,"text":"Require the minimum evidence needed for that rule","textPreview":"Require the minimum evidence needed for that rule","textChars":49,"textLines":1,"bbox":[768,385,151,68]}
+{"kind":"shape","id":"sh/y94rap8r","slide":4,"bbox":[976,286,190,194]}
+{"kind":"textbox","id":"sh/lcvalkr2","slide":4,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[994,307,45,18]}
+{"kind":"textbox","id":"sh/0bm9cfqh","slide":4,"text":"Ledger","textPreview":"Ledger","textChars":6,"textLines":1,"bbox":[994,343,154,27]}
+{"kind":"textbox","id":"sh/j6hsve9g","slide":4,"text":"Persist proof, conditions, coverage, and confidence basis","textPreview":"Persist proof, conditions, coverage, and confidence basis","textChars":57,"textLines":1,"bbox":[994,385,151,68]}
+{"kind":"shape","id":"sh/i5orm98v","slide":4,"bbox":[262,383,36,0]}
+{"kind":"shape","id":"sh/gbipgb6d","slide":4,"bbox":[488,383,36,0]}
+{"kind":"shape","id":"sh/1cr69g7y","slide":4,"bbox":[714,383,36,0]}
+{"kind":"shape","id":"sh/e907e1o7","slide":4,"bbox":[940,383,36,0]}
+{"kind":"shape","id":"sh/fa9o76ps","slide":4,"bbox":[72,535,1136,88]}
+{"kind":"textbox","id":"sh/of2pkb69","slide":4,"text":"MODEL BOUNDARY","textPreview":"MODEL BOUNDARY","textChars":14,"textLines":1,"bbox":[98,556,160,18]}
+{"kind":"textbox","id":"sh/pgb6dg7u","slide":4,"text":"RAG and the LLM can review a bounded evidence bundle. They cannot satisfy an evidence gate or replace missing source evidence.","textPreview":"RAG and the LLM can review a bounded evidence bundle. They cannot satisfy an evidence gate or replace missing source evidence.","textChars":126,"textLines":1,"bbox":[300,553,834,38]}
+{"kind":"notes","id":"nt/kflxkt","slide":4,"text":"Source: docs/INVARIANT_ENGINE.md; backend/invaria/algorithm.py; backend/invaria/pipeline.py.\n\nTalking points: An invariant describes what must stay true in the application. The algorithm creates a question from a rule and the application structure, collects source evidence, then applies a gate. The gate makes it impossible for model prose or RAG content to fill an evidence gap. The decision ledger retains why we reported or discarded the candidate."}
+{"kind":"slide","id":"sl/6uboly","slide":5,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":12}
+{"kind":"shape","id":"sh/pcv2pobq","slide":5,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/29k3etsf","slide":5,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/3adknetk","slide":5,"text":"Screenshot: live INVARIANT decision ledger, captured 24 Sep 2026","textPreview":"Screenshot: live INVARIANT decision ledger, captured 24 Sep 2026","textChars":64,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/cfmlk3ah","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/dgv2t8b2","slide":5,"bbox":[72,54,150,28]}
+{"kind":"textbox","id":"sh/qd43itsb","slide":5,"text":"CORE ALGORITHM","textPreview":"CORE ALGORITHM","textChars":14,"textLines":1,"bbox":[82,60,130,16]}
+{"kind":"textbox","id":"sh/bedkrytw","slide":5,"text":"A BOLA finding must pass\nan evidence test","textPreview":"A BOLA finding must pass | an evidence test","textChars":41,"textLines":2,"bbox":[72,105,560,92]}
+{"kind":"textbox","id":"sh/sj218zux","slide":5,"text":"BOLA001 asks whether a request-controlled object reference reaches private data without a proven server-side ownership or tenant predicate.","textPreview":"BOLA001 asks whether a request-controlled object reference reaches private data without a proven server-side ownership or tenant predicate.","textChars":139,"textLines":1,"bbox":[72,220,547,54]}
+{"kind":"shape","id":"sh/tkb2h4bi","slide":5,"bbox":[72,310,548,272]}
+{"kind":"textbox","id":"sh/5gzapcj6","slide":5,"text":"EXAMPLE PATH","textPreview":"EXAMPLE PATH","textChars":12,"textLines":1,"bbox":[100,338,170,17]}
+{"kind":"textbox","id":"sh/kf6tg7il","slide":5,"text":"POST /api/wallet/withdraw","textPreview":"POST /api/wallet/withdraw","textChars":25,"textLines":1,"bbox":[100,371,415,24]}
+{"kind":"textbox","id":"sh/jexsn210","slide":5,"text":"const wallet = getWallet(userId);\n\nlet wallet = data.wallets.find(\n  w => w.userId === userId\n);","textPreview":"const wallet = getWallet(userId); |  | let wallet = data.wallets.find( |   w => w.userId === userId | );","textChars":96,"textLines":5,"bbox":[100,414,420,115]}
+{"kind":"textbox","id":"sh/ydorex0v","slide":5,"text":"The engine follows request-derived data into the resolved local helper and inspects the lookup for a server-derived scope constraint.","textPreview":"The engine follows request-derived data into the resolved local helper and inspects the lookup for a server-derived scope constraint.","textChars":133,"textLines":1,"bbox":[100,544,455,25]}
+{"kind":"textbox","id":"sh/sjqtk7ix","slide":5,"text":"The decision ledger states what was observed, which controls were proven, and what requires human validation.","textPreview":"The decision ledger states what was observed, which controls were proven, and what requires human validation.","textChars":109,"textLines":1,"bbox":[672,604,535,30]}
+{"kind":"textbox","id":"sh/7ihsr21c","slide":5,"text":"BOLA001: route + lookup  |  BFL001: route + mutation  |  INJ001: route + sink  |  SEC001: credential literal","textPreview":"BOLA001: route + lookup  |  BFL001: route + mutation  |  INJ001: route + sink  |  SEC001: credential literal","textChars":108,"textLines":1,"bbox":[72,621,865,18]}
+{"kind":"image","id":"im/i1ofu5sb","slide":5,"name":"","geometry":"roundRect","alt":"Live Invaria decision ledger for a potential BOLA finding","bbox":[672,87,536,503]}
+{"kind":"notes","id":"nt/6uboly","slide":5,"text":"Screenshot: live Invaria decision ledger captured 24 September 2026. Source: docs/INVARIANT_ENGINE.md; backend/invaria/algorithm.py.\n\nTalking points: BOLA is broken object-level authorization. In this candidate the record selection depends on request-controlled input. The tool identifies the route, the helper flow, and the lookup. It checks for a recognized server-side owner or tenant constraint. The evidence gate passes only when route and lookup evidence are both present. Passing the gate produces a source-backed candidate, not confirmation of exploitation."}
+{"kind":"slide","id":"sl/rv1ibj","slide":6,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":14}
+{"kind":"shape","id":"sh/w7ipo7ql","slide":6,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/v698fm90","slide":6,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/a507mh8f","slide":6,"text":"Screenshot: live public TaskForge scan; source-backed candidate, not a confirmed breach","textPreview":"Screenshot: live public TaskForge scan; source-backed candidate, not a confirmed breach","textChars":87,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/94rqdcru","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/83ipk7q9","slide":6,"bbox":[72,54,160,28]}
+{"kind":"textbox","id":"sh/n298b29o","slide":6,"text":"REAL-LIFE EXAMPLE","textPreview":"REAL-LIFE EXAMPLE","textChars":17,"textLines":1,"bbox":[82,60,140,16]}
+{"kind":"textbox","id":"sh/m107ix83","slide":6,"text":"A marketplace authorization path","textPreview":"A marketplace authorization path","textChars":32,"textLines":1,"bbox":[72,105,680,49]}
+{"kind":"textbox","id":"sh/l07q9sry","slide":6,"text":"In a multi-tenant marketplace, a participant should only access lender records they own or are permitted to view.","textPreview":"In a multi-tenant marketplace, a participant should only access lender records they own or are permitted to view.","textChars":113,"textLines":1,"bbox":[72,174,655,42]}
+{"kind":"textbox","id":"sh/mx4ny1cz","slide":6,"text":"Live relationship graph: GET /api/lenders/:id","textPreview":"Live relationship graph: GET /api/lenders/:id","textChars":45,"textLines":1,"bbox":[72,608,480,18]}
+{"kind":"textbox","id":"sh/nyd4r6t4","slide":6,"text":"Expected invariant","textPreview":"Expected invariant","textChars":18,"textLines":1,"bbox":[844,278,280,25]}
+{"kind":"textbox","id":"sh/8z650bup","slide":6,"text":"The actor's identity or tenant scope must constrain access to the lender record.","textPreview":"The actor's identity or tenant scope must constrain access to the lender record.","textChars":80,"textLines":1,"bbox":[844,314,330,48]}
+{"kind":"shape","id":"sh/90f6tgba","slide":6,"bbox":[844,386,315,0]}
+{"kind":"textbox","id":"sh/yt4nu1cn","slide":6,"text":"Observed source path","textPreview":"Observed source path","textChars":20,"textLines":1,"bbox":[844,409,280,25]}
+{"kind":"textbox","id":"sh/zud4n6t8","slide":6,"text":"Route receives id  →  inline handler  →  data.lenders.find  →  data.lenders","textPreview":"Route receives id  →  inline handler  →  data.lenders.find  →  data.lenders","textChars":75,"textLines":1,"bbox":[844,446,330,62]}
+{"kind":"shape","id":"sh/0vm5wrut","slide":6,"bbox":[844,529,315,0]}
+{"kind":"textbox","id":"sh/lwvmpwbe","slide":6,"text":"Review decision","textPreview":"Review decision","textChars":15,"textLines":1,"bbox":[844,552,280,23]}
+{"kind":"textbox","id":"sh/q5knqhcr","slide":6,"text":"The reviewer checks whether a server-derived ownership or tenant predicate scopes the lookup. If the source does not prove it, Invaria reports the condition and uncertainty.","textPreview":"The reviewer checks whether a server-derived ownership or tenant predicate scopes the lookup. If the source does not prove it, Invaria re...","textChars":173,"textLines":1,"bbox":[844,586,345,52]}
+{"kind":"textbox","id":"sh/b6t4jmtc","slide":6,"text":"The same method applies to wallet, refund, patient-record, and admin-action workflows.","textPreview":"The same method applies to wallet, refund, patient-record, and admin-action workflows.","textChars":86,"textLines":1,"bbox":[72,638,820,18]}
+{"kind":"image","id":"im/lgj2t8z2","slide":6,"name":"","geometry":"roundRect","alt":"Invaria relationship graph for GET /api/lenders/:id","bbox":[72,260,704,336]}
+{"kind":"notes","id":"nt/rv1ibj","slide":6,"text":"Screenshot: live scan of the public TaskForge repository captured 24 September 2026.\n\nTalking points: This is an example of a real repository scan, but it is not an allegation of a confirmed vulnerability or breach. The graph shows the route, request input, handler, query, and data model. Invaria turns the graph into an explicit authorization question that a human can validate against intended policy and controls."}
+{"kind":"slide","id":"sl/s4u8t3","slide":7,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":25}
+{"kind":"shape","id":"sh/zixo3al8","slide":7,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/kj6pcf2d","slide":7,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/lkf6503y","slide":7,"text":"Source: Invaria blueprint; target segments are prospective","textPreview":"Source: Invaria blueprint; target segments are prospective","textChars":58,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/ad476lkb","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/bedozqlw","slide":7,"bbox":[72,54,155,28]}
+{"kind":"textbox","id":"sh/cfmp8v2h","slide":7,"text":"TARGET CUSTOMERS","textPreview":"TARGET CUSTOMERS","textChars":16,"textLines":1,"bbox":[82,60,135,16]}
+{"kind":"textbox","id":"sh/xgv61032","slide":7,"text":"Who needs evidence-backed\nsecurity review first","textPreview":"Who needs evidence-backed | security review first","textChars":47,"textLines":2,"bbox":[72,105,585,93]}
+{"kind":"textbox","id":"sh/2pk72lkf","slide":7,"text":"The first customers share a common risk: their applications make sensitive access or business decisions faster than a small team can manually review them.","textPreview":"The first customers share a common risk: their applications make sensitive access or business decisions faster than a small team can manu...","textChars":154,"textLines":1,"bbox":[72,222,580,64]}
+{"kind":"shape","id":"sh/nadovql0","slide":7,"bbox":[72,337,104,47]}
+{"kind":"textbox","id":"sh/36h0b6po","slide":7,"text":"AI-built SaaS","textPreview":"AI-built SaaS","textChars":13,"textLines":1,"bbox":[85,348,79,28]}
+{"kind":"textbox","id":"sh/258ji183","slide":7,"text":"CTO or engineering lead","textPreview":"CTO or engineering lead","textChars":23,"textLines":1,"bbox":[204,338,230,22]}
+{"kind":"textbox","id":"sh/p8zidg7e","slide":7,"text":"Tenant isolation, sensitive APIs, rapid release cycles","textPreview":"Tenant isolation, sensitive APIs, rapid release cycles","textChars":54,"textLines":1,"bbox":[204,364,460,22]}
+{"kind":"shape","id":"sh/47q1kbqt","slide":7,"bbox":[72,395,594,0]}
+{"kind":"shape","id":"sh/rah0f6pk","slide":7,"bbox":[72,406,104,47]}
+{"kind":"textbox","id":"sh/q98jm18z","slide":7,"text":"Fintech & payments","textPreview":"Fintech & payments","textChars":18,"textLines":1,"bbox":[85,417,79,28]}
+{"kind":"textbox","id":"sh/dczihg7q","slide":7,"text":"Security or platform lead","textPreview":"Security or platform lead","textChars":25,"textLines":1,"bbox":[204,407,230,22]}
+{"kind":"textbox","id":"sh/cbq1obq5","slide":7,"text":"Refunds, balances, transfers, and state-changing actions","textPreview":"Refunds, balances, transfers, and state-changing actions","textChars":56,"textLines":1,"bbox":[204,433,460,22]}
+{"kind":"shape","id":"sh/7ex03mpg","slide":7,"bbox":[72,464,594,0]}
+{"kind":"shape","id":"sh/6d4zah8v","slide":7,"bbox":[72,475,104,47]}
+{"kind":"textbox","id":"sh/atc3ipsj","slide":7,"text":"Health software","textPreview":"Health software","textChars":15,"textLines":1,"bbox":[85,486,79,28]}
+{"kind":"textbox","id":"sh/bul4ru9o","slide":7,"text":"Product security lead","textPreview":"Product security lead","textChars":21,"textLines":1,"bbox":[204,476,230,22]}
+{"kind":"textbox","id":"sh/wvulkza9","slide":7,"text":"Patient ownership, role-based access, data exposure","textPreview":"Patient ownership, role-based access, data exposure","textChars":51,"textLines":1,"bbox":[204,502,460,22]}
+{"kind":"shape","id":"sh/xwnmtkru","slide":7,"bbox":[72,533,594,0]}
+{"kind":"shape","id":"sh/m5c3e5s7","slide":7,"bbox":[72,544,104,47]}
+{"kind":"textbox","id":"sh/n6l4na9s","slide":7,"text":"Internal platforms","textPreview":"Internal platforms","textChars":18,"textLines":1,"bbox":[85,555,79,28]}
+{"kind":"textbox","id":"sh/orulgfad","slide":7,"text":"Platform or IT lead","textPreview":"Platform or IT lead","textChars":19,"textLines":1,"bbox":[204,545,230,22]}
+{"kind":"textbox","id":"sh/9s3mpkry","slide":7,"text":"Privileged workflows, employee data, uneven security coverage","textPreview":"Privileged workflows, employee data, uneven security coverage","textChars":61,"textLines":1,"bbox":[204,571,460,22]}
+{"kind":"shape","id":"sh/e1s3a5sb","slide":7,"bbox":[72,602,594,0]}
+{"kind":"shape","id":"sh/z21kja9w","slide":7,"bbox":[747,108,461,500]}
+{"kind":"textbox","id":"sh/hwr6p8be","slide":7,"text":"FIRST SALES WEDGE","textPreview":"FIRST SALES WEDGE","textChars":17,"textLines":1,"bbox":[788,151,250,18]}
+{"kind":"textbox","id":"sh/gvipg3ut","slide":7,"text":"API-driven\nmultitenant products","textPreview":"API-driven | multitenant products","textChars":31,"textLines":2,"bbox":[788,193,330,66]}
+{"kind":"textbox","id":"sh/fuponyt8","slide":7,"text":"Start with JavaScript or TypeScript teams that need to demonstrate control over access paths and business logic before they can hire a mature AppSec function.","textPreview":"Start with JavaScript or TypeScript teams that need to demonstrate control over access paths and business logic before they can hire a ma...","textChars":158,"textLines":1,"bbox":[788,292,333,85]}
+{"kind":"shape","id":"sh/utg7etcn","slide":7,"bbox":[788,420,325,0]}
+{"kind":"textbox","id":"sh/ts76lob2","slide":7,"text":"Primary buyer","textPreview":"Primary buyer","textChars":13,"textLines":1,"bbox":[788,450,200,19]}
+{"kind":"textbox","id":"sh/srypc3uh","slide":7,"text":"CTO / VP Engineering / Product Security Lead","textPreview":"CTO / VP Engineering / Product Security Lead","textChars":44,"textLines":1,"bbox":[788,482,320,24]}
+{"kind":"textbox","id":"sh/7qpojytw","slide":7,"text":"Value delivered","textPreview":"Value delivered","textChars":15,"textLines":1,"bbox":[788,528,190,18]}
+{"kind":"textbox","id":"sh/6pgnatcr","slide":7,"text":"A path from suspicious code to an accountable security decision.","textPreview":"A path from suspicious code to an accountable security decision.","textChars":64,"textLines":1,"bbox":[788,555,332,28]}
+{"kind":"notes","id":"nt/s4u8t3","slide":7,"text":"Source: Invaria Engineering & Product Blueprint.\n\nTalking points: These are target segments, not named customers or current contracts. We start where the consequences of a policy failure are tangible and teams have limited application-security bandwidth. The wedge is API-driven, multi-tenant SaaS because ownership and authorization flows are common and inspectable."}
+{"kind":"slide","id":"sl/6gw41t","slide":8,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":18}
+{"kind":"shape","id":"sh/dk3alsni","slide":8,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/qhcrado7","slide":8,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,450,15]}
+{"kind":"textbox","id":"sh/bilsji5s","slide":8,"text":"Source: docs/ROADMAP.md and docs/INVARIANT_ENGINE.md","textPreview":"Source: docs/ROADMAP.md and docs/INVARIANT_ENGINE.md","textChars":52,"textLines":1,"bbox":[450,686,650,15]}
+{"kind":"textbox","id":"sh/ofu98n61","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1140,684,68,18]}
+{"kind":"shape","id":"sh/pg3qhs7m","slide":8,"bbox":[72,54,285,28]}
+{"kind":"textbox","id":"sh/2dsr6dov","slide":8,"text":"DEVELOPMENT STAGES & FUTURE SCOPE","textPreview":"DEVELOPMENT STAGES & FUTURE SCOPE","textChars":33,"textLines":1,"bbox":[82,60,265,16]}
+{"kind":"textbox","id":"sh/3e18fipg","slide":8,"text":"The path from a working engine\nto trusted security coverage","textPreview":"The path from a working engine | to trusted security coverage","textChars":59,"textLines":2,"bbox":[72,105,715,93]}
+{"kind":"textbox","id":"sh/gba94365","slide":8,"text":"The roadmap prioritizes measurable accuracy and clear coverage boundaries before product breadth.","textPreview":"The roadmap prioritizes measurable accuracy and clear coverage boundaries before product breadth.","textChars":97,"textLines":1,"bbox":[72,221,720,30]}
+{"kind":"shape","id":"sh/1cjqd87q","slide":8,"bbox":[72,324,340,229]}
+{"kind":"shape","id":"sh/tcbu5svi","slide":8,"bbox":[96,348,76,28]}
+{"kind":"textbox","id":"sh/sr2twnux","slide":8,"text":"NOW","textPreview":"NOW","textChars":3,"textLines":1,"bbox":[106,354,56,16]}
+{"kind":"textbox","id":"sh/7qtc3idc","slide":8,"text":"Vertical slice","textPreview":"Vertical slice","textChars":14,"textLines":1,"bbox":[96,396,286,28]}
+{"kind":"textbox","id":"sh/6pkbudc7","slide":8,"text":"JS/TS Express parsing; BOLA, sensitive business-flow, injection and credential hypotheses; decision ledger; review workflow","textPreview":"JS/TS Express parsing; BOLA, sensitive business-flow, injection and credential hypotheses; decision ledger; review workflow","textChars":123,"textLines":1,"bbox":[96,442,286,74]}
+{"kind":"shape","id":"sh/5oru1svm","slide":8,"bbox":[454,324,340,229]}
+{"kind":"shape","id":"sh/knitsnu1","slide":8,"bbox":[478,348,76,28]}
+{"kind":"textbox","id":"sh/jm9czidg","slide":8,"text":"NEXT","textPreview":"NEXT","textChars":4,"textLines":1,"bbox":[488,354,56,16]}
+{"kind":"textbox","id":"sh/il0bqdcv","slide":8,"text":"Stronger policy verification","textPreview":"Stronger policy verification","textChars":28,"textLines":1,"bbox":[478,396,286,28]}
+{"kind":"textbox","id":"sh/xkrax8va","slide":8,"text":"Typed actor and tenant policies; framework and ORM adapters; call/return propagation; dominance-aware authorization","textPreview":"Typed actor and tenant policies; framework and ORM adapters; call/return propagation; dominance-aware authorization","textChars":115,"textLines":1,"bbox":[478,442,286,74]}
+{"kind":"shape","id":"sh/wjito3up","slide":8,"bbox":[836,324,340,229]}
+{"kind":"shape","id":"sh/o3mt432l","slide":8,"bbox":[860,348,76,28]}
+{"kind":"textbox","id":"sh/94vud836","slide":8,"text":"THEN","textPreview":"THEN","textChars":4,"textLines":1,"bbox":[870,354,56,16]}
+{"kind":"textbox","id":"sh/m1kb2dkv","slide":8,"text":"Workflow and validation","textPreview":"Workflow and validation","textChars":23,"textLines":1,"bbox":[860,396,286,28]}
+{"kind":"textbox","id":"sh/n2tcbyl0","slide":8,"text":"Multi-step state transitions; held-out evaluation; approved sandbox validation; remediation proposals and incremental scans","textPreview":"Multi-step state transitions; held-out evaluation; approved sandbox validation; remediation proposals and incremental scans","textChars":123,"textLines":1,"bbox":[860,442,286,74]}
+{"kind":"shape","id":"sh/0z2t032p","slide":8,"bbox":[412,438.5,42,0]}
+{"kind":"shape","id":"sh/10bu983a","slide":8,"bbox":[794,438.5,42,0]}
+{"kind":"textbox","id":"sh/exkbytkj","slide":8,"text":"Review focus: the next proof point is a frozen evaluation set showing where the engine reports correctly, where it does not, and what remains unsupported.","textPreview":"Review focus: the next proof point is a frozen evaluation set showing where the engine reports correctly, where it does not, and what rem...","textChars":154,"textLines":1,"bbox":[72,590,998,31]}
+{"kind":"textbox","id":"sh/zytc7yl4","slide":8,"text":"INVARIA","textPreview":"INVARIA","textChars":7,"textLines":1,"bbox":[72,638,116,21]}
+{"kind":"textbox","id":"sh/kv6dcn2t","slide":8,"text":"Evidence first. Human judgment retained.","textPreview":"Evidence first. Human judgment retained.","textChars":40,"textLines":1,"bbox":[205,639,400,20]}
+{"kind":"notes","id":"nt/6gw41t","slide":8,"text":"Source: docs/ROADMAP.md; docs/INVARIANT_ENGINE.md.\n\nTalking points: The implementation today is intentionally bounded. Future work should expand only behind measured regression gates. The priority is not a larger model or more agents; it is better policy verification, stronger data-flow evidence, evaluations on held-out cases, and safe validation in approved environments."}

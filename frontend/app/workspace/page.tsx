@@ -79,6 +79,18 @@ type Finding = {
   references: { title: string; url: string }[];
   review_status: string;
   review_note: string;
+  algorithm?: {
+    code_name: string;
+    version: string;
+    hypothesis: string;
+    decision: string;
+    evidence_gate: { passed: boolean; required_kinds: string[]; observed_kinds: string[]; missing_kinds: string[]; interprocedural_trace?: boolean };
+    proven_controls: string[];
+    policy?: { coverage?: string; matched_invariants?: { id: string; description: string; required_controls: string[] }[]; observed_control_markers?: string[]; missing_control_markers?: string[] };
+    risk_signals: string[];
+    unresolved_conditions: string[];
+    confidence_basis: string;
+  };
   reasoning?: { model: string; verdict: string; explanation: string };
 };
 type Node = {
@@ -102,6 +114,7 @@ type ExecutiveEntry = {
   weight: number;
 };
 type ExecutiveArea = {
+  key: string;
   name: string;
   count: number;
   weight: number;
@@ -131,6 +144,7 @@ type Scan = {
   coverage?: Record<string, number>;
   findings?: Finding[];
   graph?: { nodes: Node[]; edges: Edge[] };
+  schemas?: unknown[];
   routes?: {
     method: string;
     path: string;
@@ -342,14 +356,343 @@ function severityMessage(severity: string) {
   } as Record<string, string>)[severity] || 'Review';
 }
 
+function areaKey(area: string) {
+  return area.trim().toLocaleLowerCase().replace(/\s+/g, ' ');
+}
+
+function sourceLabel(finding: Finding) {
+  if (finding.route) return finding.route;
+  const source = finding.evidence[0];
+  return source ? `${source.file}:${source.line}` : 'the recorded source path';
+}
+
+function businessAsset(finding: Finding) {
+  const details = `${finding.route || ''} ${finding.summary} ${finding.attack_path.join(' ')}`.toLowerCase();
+  if (details.includes('wallet')) return 'a wallet balance or credit record';
+  if (details.includes('lender')) return 'a lender profile or lender-owned job';
+  if (details.includes('download')) return 'a private job attachment';
+  if (details.includes('result')) return 'a submitted job result';
+  if (details.includes('accept')) return 'the job acceptance decision';
+  if (details.includes('status')) return 'the job status';
+  if (details.includes('job')) return 'a job record';
+  if (details.includes('order')) return 'an order record';
+  if (details.includes('user')) return 'a customer record';
+  return 'a protected product record';
+}
+
+function businessConsequence(finding: Finding) {
+  const location = sourceLabel(finding);
+  const details = `${finding.summary} ${finding.algorithm?.risk_signals?.join(' ') || ''}`.toLowerCase();
+
+  if (finding.rule_id === 'BFL001') {
+    const operation = finding.route ? `the ${finding.route} operation` : 'a sensitive product operation';
+    const outcome = /(coupon|discount)/.test(details)
+      ? 'an unapproved discount could reduce the order value'
+      : /(refund|withdraw|balance|credit|amount|price|payment)/.test(details)
+        ? 'an unapproved money movement or price change could be recorded'
+        : /(quantity|inventory|stock)/.test(details)
+          ? 'stock or order quantities could be changed outside the intended rules'
+          : 'a sensitive product state could be changed outside the intended rules';
+    return `A caller could send a changed value to ${operation}. If the server-side business rule is incomplete, ${outcome}.`;
+  }
+
+  if (finding.rule_id === 'BOLA001') {
+    const asset = businessAsset(finding);
+    return `A signed-in user could try a different identifier at ${location} to reach ${asset}. If ownership or tenant scope is not enforced separately, another customer’s ${asset.replace(/^a /, '')} could be viewed or changed.`;
+  }
+
+  if (finding.rule_id === 'FBA001') {
+    return 'A visitor can start an anonymous session and submit a shared data change. If the remote Firebase rules do not limit that action to the intended user or record, unapproved records could be created or changed.';
+  }
+
+  if (finding.rule_id === 'CFG001') {
+    const setting = finding.summary.split(' ')[0] || 'credential setting';
+    return `If ${setting} is used outside local development, a person who learns the fallback could try it against the running service. That could put application sessions or protected service access at risk.`;
+  }
+
+  if (finding.rule_id === 'SEC001' || finding.category === 'secrets') {
+    const credential = finding.summary.split(' ')[0] || 'credential';
+    return `Someone with repository access could copy the ${credential} value recorded at ${location}. If it is active, they could attempt to sign in to the related service or impersonate an application user.`;
+  }
+
+  if (finding.category === 'injection') {
+    return `A caller could influence the operation reached from ${location}. If the recorded input reaches the data or command layer without the expected protection, application data could be read, changed, or disrupted.`;
+  }
+
+  return finding.impact;
+}
+
+function businessTrigger(finding: Finding) {
+  if (finding.rule_id === 'BFL001') return `A request-controlled value reaches ${finding.route || 'a sensitive operation'}.`;
+  if (finding.rule_id === 'BOLA001') return `The lookup for ${businessAsset(finding)} at ${sourceLabel(finding)} accepts an identifier without a proven matching ownership or tenant check.`;
+  if (finding.rule_id === 'FBA001') return 'Anonymous access reaches a Firebase write, while the enforcement rules are outside this source snapshot.';
+  if (finding.rule_id === 'CFG001') return 'The service can fall back to a credential-like value when the expected environment setting is absent.';
+  if (finding.rule_id === 'SEC001' || finding.category === 'secrets') return `A credential-like value appears in ${sourceLabel(finding)}.`;
+  return finding.algorithm?.unresolved_conditions?.[0] || 'The recorded evidence needs a reviewer to confirm the intended product control.';
+}
+
+type ModelDomain = {
+  id: string;
+  label: string;
+  shortLabel: string;
+  status: 'observed' | 'partial' | 'awaiting';
+  summary: string;
+  items: { label: string; detail?: string }[];
+  x: number;
+  y: number;
+};
+
+function ApplicationModel({
+  scan,
+  onOpenGraph,
+}: {
+  scan: Scan;
+  onOpenGraph: (routeId: string) => void;
+}) {
+  const [selectedDomainId, setSelectedDomainId] = useState('views');
+  const nodes = scan.graph?.nodes || [];
+  const routeNodes = nodes.filter((node) => node.kind === 'Route');
+  const dataNodes = nodes.filter((node) => ['Query', 'Model'].includes(node.kind));
+  const controlNodes = nodes.filter((node) => ['Input', 'Middleware', 'Identity'].includes(node.kind));
+  const serviceNodes = nodes.filter((node) => ['Middleware', 'Function'].includes(node.kind));
+  const documentContext = scan.documentation?.business_context || [];
+  const activities = scan.product_overview?.activities || [];
+  const sourceFiles = scan.coverage?.source_files || 0;
+  const parsedFiles = scan.coverage?.parsed_files || 0;
+  const routeItems = routeNodes.slice(0, 4).map((node) => ({
+    label: node.label,
+    detail: node.file ? `${node.file}:${node.line}` : undefined,
+  }));
+  const dataItems = dataNodes.slice(0, 4).map((node) => ({
+    label: node.label,
+    detail: node.file ? `${node.file}:${node.line}` : undefined,
+  }));
+  const controlItems = controlNodes.slice(0, 4).map((node) => ({
+    label: node.label,
+    detail: node.kind,
+  }));
+  const domains: ModelDomain[] = [
+    {
+      id: 'views', label: 'Views & entry points', shortLabel: 'Views', status: routeNodes.length ? 'observed' : 'awaiting',
+      summary: routeNodes.length
+        ? `${routeNodes.length} supported application entry points were resolved from source.`
+        : 'No supported application entry points were extracted from this scan.',
+      items: routeItems, x: 15, y: 21,
+    },
+    {
+      id: 'content', label: 'Content & context', shortLabel: 'Context', status: documentContext.length || activities.length ? 'observed' : 'partial',
+      summary: documentContext.length || activities.length
+        ? 'Product activities and uploaded business material give the model its operating context.'
+        : 'No functional documentation was attached. Product context will grow as documents and AI summaries are available.',
+      items: [
+        ...activities.slice(0, 3).map((activity) => ({ label: activity, detail: 'Product activity' })),
+        ...documentContext.slice(0, 2).map((document) => ({ label: document.name, detail: 'Business document' })),
+      ], x: 50, y: 10,
+    },
+    {
+      id: 'data', label: 'Data & persistence', shortLabel: 'Data', status: dataNodes.length ? 'observed' : 'awaiting',
+      summary: dataNodes.length
+        ? `${dataNodes.length} data operations or models were connected to supported code paths.`
+        : 'No supported data operations were linked to an application path.',
+      items: dataItems, x: 85, y: 21,
+    },
+    {
+      id: 'schema', label: 'Base schema', shortLabel: 'Schema', status: scan.schemas?.length ? 'observed' : dataNodes.length ? 'partial' : 'awaiting',
+      summary: scan.schemas?.length
+        ? `${scan.schemas.length} schema elements were extracted from the repository.`
+        : dataNodes.length
+          ? 'Models and queries provide schema clues. Migration and ORM-schema extraction remains the next coverage step.'
+          : 'Schema extraction needs supported database definitions, migrations, or ORM models.',
+      items: scan.schemas?.length
+        ? scan.schemas.slice(0, 4).map((schema) => ({ label: String(schema), detail: 'Schema element' }))
+        : dataItems.slice(0, 3), x: 88, y: 52,
+    },
+    {
+      id: 'roles', label: 'Roles & access', shortLabel: 'Roles', status: controlNodes.length ? 'partial' : 'awaiting',
+      summary: controlNodes.length
+        ? 'The parser found request inputs and access-control clues. Role and ownership policy still require deeper application analysis.'
+        : 'Role and access policy becomes visible when supported identity or middleware patterns are found.',
+      items: controlItems, x: 78, y: 82,
+    },
+    {
+      id: 'trust', label: 'Trust boundaries', shortLabel: 'Trust', status: controlNodes.length ? 'partial' : 'awaiting',
+      summary: controlNodes.length
+        ? 'Request-controlled inputs and middleware mark where data crosses into application-controlled logic.'
+        : 'Trust boundaries will be drawn when request inputs and protection layers can be resolved.',
+      items: controlItems.filter((item) => item.detail === 'Input' || item.detail === 'Middleware'), x: 50, y: 91,
+    },
+    {
+      id: 'services', label: 'Services & modules', shortLabel: 'Services', status: serviceNodes.length ? 'partial' : 'awaiting',
+      summary: serviceNodes.length
+        ? `${serviceNodes.length} local functions or mounted modules were linked to the observed routes.`
+        : 'Service and module connections will appear as imports and calls are resolved.',
+      items: serviceNodes.slice(0, 4).map((node) => ({ label: node.label, detail: node.kind })), x: 22, y: 82,
+    },
+    {
+      id: 'flows', label: 'Business flows', shortLabel: 'Flows', status: activities.length || routeNodes.length ? 'partial' : 'awaiting',
+      summary: activities.length
+        ? 'Business activities combine the product overview with the code paths that support them.'
+        : 'Route groupings show technical flow today. Business-flow descriptions become richer with product documentation or the local AI overview.',
+      items: activities.length
+        ? activities.slice(0, 4).map((activity) => ({ label: activity, detail: 'Product activity' }))
+        : routeItems.slice(0, 3), x: 12, y: 52,
+    },
+  ];
+  const selectedDomain = domains.find((domain) => domain.id === selectedDomainId) || domains[0];
+  const observedDomains = domains.filter((domain) => domain.status === 'observed').length;
+  const primaryRouteId = routeNodes[0]?.id || '';
+
+  return (
+    <section className="application-model" aria-label="Application model">
+      <header className="application-model-header">
+        <div>
+          <span><Network size={15} aria-hidden="true" /> Phase 3 · application model</span>
+          <h3>How this application fits together.</h3>
+          <p>Explore the connected view of its entry points, code context, data paths, controls, and business operations.</p>
+        </div>
+        <div className="model-coverage">
+          <strong>{observedDomains}<small> / {domains.length}</small></strong>
+          <span>model areas observed</span>
+        </div>
+      </header>
+
+      <div className="application-model-map" aria-label="Interactive application model map">
+        <svg className="application-model-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <circle cx="50" cy="51" r="12" className="model-orbit" />
+          {domains.map((domain) => (
+            <line key={domain.id} x1="50" y1="51" x2={domain.x} y2={domain.y} />
+          ))}
+          <line x1="15" y1="21" x2="12" y2="52" className="model-cross-link" />
+          <line x1="85" y1="21" x2="88" y2="52" className="model-cross-link" />
+          <line x1="22" y1="82" x2="50" y2="91" className="model-cross-link" />
+          <line x1="78" y1="82" x2="50" y2="91" className="model-cross-link" />
+        </svg>
+        <div className="application-core" aria-hidden="true"><Network size={25} /><strong>Application</strong><span>model</span></div>
+        {domains.map((domain) => (
+          <button
+            type="button"
+            key={domain.id}
+            className={`application-model-node ${domain.status} ${selectedDomain.id === domain.id ? 'selected' : ''}`}
+            style={{ '--model-x': `${domain.x}%`, '--model-y': `${domain.y}%` } as CSSProperties}
+            onClick={() => setSelectedDomainId(domain.id)}
+            aria-pressed={selectedDomain.id === domain.id}
+          >
+            <i aria-hidden="true" />
+            <span>{domain.shortLabel}</span>
+            <small>{domain.status === 'observed' ? 'Observed' : domain.status === 'partial' ? 'Partial' : 'Awaiting'}</small>
+          </button>
+        ))}
+      </div>
+
+      <section className="application-model-detail" aria-live="polite">
+        <div className="model-detail-heading">
+          <div>
+            <span>{selectedDomain.status === 'observed' ? 'Evidence from this scan' : 'Coverage in progress'}</span>
+            <h4>{selectedDomain.label}</h4>
+          </div>
+          <span className={`model-status ${selectedDomain.status}`}>{selectedDomain.status === 'observed' ? 'Observed' : selectedDomain.status === 'partial' ? 'Partially mapped' : 'Not yet observed'}</span>
+        </div>
+        <p>{selectedDomain.summary}</p>
+        {selectedDomain.items.length ? (
+          <div className="model-detail-items" aria-label={`${selectedDomain.label} evidence`}>
+            {selectedDomain.items.map((item, index) => (
+              <div key={`${item.label}-${index}`}><strong>{item.label}</strong>{item.detail && <small>{item.detail}</small>}</div>
+            ))}
+          </div>
+        ) : <p className="model-empty">This area will populate as the relevant repository structures are parsed.</p>}
+        <div className="model-detail-footer">
+          <span><Check size={14} aria-hidden="true" /> {parsedFiles} of {sourceFiles} inventoried source files parsed</span>
+          <Button variant="outline" size="sm" disabled={!primaryRouteId} onClick={() => onOpenGraph(primaryRouteId)}>
+            Trace a source path <ArrowUpRight size={14} />
+          </Button>
+        </div>
+      </section>
+      <p className="application-model-note">Solid nodes come from the current snapshot. Dashed nodes describe model areas that need deeper parser coverage; they are not asserted as source evidence.</p>
+    </section>
+  );
+}
+
+function ProductModel({
+  scan,
+  entries,
+  onOpenTechnical,
+}: {
+  scan: Scan;
+  entries: ExecutiveEntry[];
+  onOpenTechnical: () => void;
+}) {
+  const nodes = scan.graph?.nodes || [];
+  const activities = scan.product_overview?.activities?.slice(0, 3) || [];
+  const routes = nodes.filter((node) => node.kind === 'Route').slice(0, 3);
+  const dataCount = nodes.filter((node) => ['Query', 'Model'].includes(node.kind)).length;
+  const controls = nodes.filter((node) => ['Identity', 'Middleware'].includes(node.kind)).length;
+  const businessCandidates = entries.filter((entry) => entry.finding.rule_id === 'BFL001');
+  const activitiesToShow = activities.length
+    ? activities
+    : routes.length
+      ? routes.map((route) => route.label)
+      : ['Product actions will appear as supported routes are mapped.'];
+  const examples = businessCandidates.length
+    ? businessCandidates.slice(0, 3).map((entry) => 'Could this ' + (entry.finding.algorithm?.risk_signals?.[0] || 'sensitive operation') + ' happen outside the intended product rules?')
+    : [
+      'Could one customer reach another customer’s records?',
+      'Could a price, coupon, refund, or inventory change bypass product rules?',
+      'Could a sensitive action be repeated when it should happen once?',
+    ];
+
+  return (
+    <section className="product-model" aria-label="Product operating model">
+      <header className="product-model-hero">
+        <div>
+          <span>Product operating model</span>
+          <h3>How to think about this product before looking at code.</h3>
+          <p>This is a business map, built from what the scan observed. It shows where a product reviewer should focus; technical details remain in the evidence dashboard.</p>
+        </div>
+        <Button variant="outline" onClick={onOpenTechnical}>Open technical model <ArrowUpRight size={15} /></Button>
+      </header>
+      <div className="product-model-flow">
+        <article>
+          <span>01</span><small>People who act</small>
+          <strong>{controls ? controls + ' access clues observed' : 'People and roles need more context'}</strong>
+          <p>{controls ? 'The scan found identity or middleware clues. Confirm who is allowed to take sensitive actions.' : 'Add product context or inspect the technical model to define roles and ownership.'}</p>
+        </article>
+        <ArrowRight aria-hidden="true" />
+        <article>
+          <span>02</span><small>Product actions</small>
+          <strong>{activitiesToShow[0]}</strong>
+          <p>{activitiesToShow.slice(1).join(' · ') || 'These are the actions the current scan can begin to connect.'}</p>
+        </article>
+        <ArrowRight aria-hidden="true" />
+        <article>
+          <span>03</span><small>What needs protection</small>
+          <strong>{dataCount ? dataCount + ' data operations or models observed' : 'Business assets need deeper mapping'}</strong>
+          <p>{dataCount ? 'Review which records, balances, prices, states, or customer data should stay protected.' : 'The current parser did not connect a supported data operation to this scan.'}</p>
+        </article>
+        <ArrowRight aria-hidden="true" />
+        <article>
+          <span>04</span><small>Rules to confirm</small>
+          <strong>{businessCandidates.length ? businessCandidates.length + ' sensitive operation' + (businessCandidates.length === 1 ? '' : 's') + ' need review' : 'No sensitive-mutation candidate reported'}</strong>
+          <p>{businessCandidates.length ? 'Check whether server-side rules, atomic changes, and expected controls are truly in place.' : 'That does not prove product rules are complete; review the coverage in Technical Evidence.'}</p>
+        </article>
+      </div>
+      <section className="product-model-examples">
+        <div>
+          <span>Helpful questions for a product review</span>
+          <h4>Examples to consider next</h4>
+          <p>These are review prompts, not findings from this scan.</p>
+        </div>
+        <ul>{examples.map((example) => <li key={example}><Check size={15} />{example}</li>)}</ul>
+      </section>
+    </section>
+  );
+}
+
 function ExecutiveSummary({
   scan,
   entries,
   areas,
   selectedArea,
   onSelectArea,
-  selectedFindingId,
-  onSelectFinding,
   onOpenFinding,
   onOpenFindings,
 }: {
@@ -358,127 +701,76 @@ function ExecutiveSummary({
   areas: ExecutiveArea[];
   selectedArea: string;
   onSelectArea: (area: string) => void;
-  selectedFindingId: string;
-  onSelectFinding: (id: string) => void;
   onOpenFinding: (finding: Finding) => void;
   onOpenFindings: () => void;
 }) {
   const priority = entries.filter((entry) => ['critical', 'high'].includes(entry.finding.severity));
   const open = entries.filter((entry) => entry.finding.review_status === 'open');
-  const reviewed = entries.length - open.length;
   const relevant = selectedArea
-    ? entries.filter((entry) => entry.areas.includes(selectedArea))
+    ? entries.filter((entry) => entry.areas.some((area) => areaKey(area) === selectedArea))
     : entries;
-  const journey = entries.find((entry) => entry.finding.id === selectedFindingId) || relevant[0] || entries[0];
-  const title = priority.length
-    ? `${priority.length} potential risks deserve priority review`
-    : entries.length
-      ? `${entries.length} potential risks are ready for review`
-      : 'No potential risks were found in supported checks';
-  const journeyArea = journey?.areas[0] || 'Business operations';
+  const selectedAreaName = areas.find((area) => area.key === selectedArea)?.name;
   const businessSummary = scan.business_impact_overview?.summary ||
-    'This view connects potential technical risks to their possible effect on the product and the people who use it.';
-  const executiveTakeaway = businessSummary.length > 290
-    ? `${businessSummary.slice(0, businessSummary.lastIndexOf(' ', 290))}…`
+    'This scan connects potential risks to the product operations and people they could affect. Review the evidence before deciding what is real.';
+  const directSummary = businessSummary.length > 360
+    ? businessSummary.slice(0, businessSummary.lastIndexOf(' ', 360)) + '…'
     : businessSummary;
+  const topRisk = relevant[0] || entries[0];
 
   return (
-    <section className="executive-summary" aria-label="Executive risk summary">
-      <header className="executive-hero">
+    <section className="business-brief" aria-label="Business risk briefing">
+      <header className="business-brief-hero">
         <div>
-          <span className="executive-kicker"><Activity size={14} aria-hidden="true" /> Executive risk summary</span>
-          <h3>{title}</h3>
-          <p title={businessSummary}>{executiveTakeaway}</p>
+          <span>Business risk briefing</span>
+          <h3>Here is what needs a product decision.</h3>
+          <p>{directSummary}</p>
         </div>
-        <Button onClick={onOpenFindings} className="executive-cta">
-          Review {open.length || entries.length} risk{(open.length || entries.length) === 1 ? '' : 's'} <ArrowRight size={16} />
-        </Button>
+        <div className="business-brief-action">
+          <small>Start here</small>
+          <strong>{(open.length || entries.length) + ' potential risk' + ((open.length || entries.length) === 1 ? '' : 's') + ' need a decision'}</strong>
+          <Button onClick={onOpenFindings}>Review the evidence <ArrowRight size={16} /></Button>
+        </div>
       </header>
 
       {scan.business_impact_overview?.status !== 'ready' && (
-        <BusinessImpactOverview key={`${scan.id}-executive-business-impact`} scan={scan} />
+        <BusinessImpactOverview key={scan.id + '-executive-business-impact'} scan={scan} />
       )}
 
-      <div className="executive-scorecards" aria-label="Business risk scorecards">
-        <button type="button" className="executive-scorecard priority" onClick={onOpenFindings}>
-          <span>Needs review</span><strong>{open.length}</strong><small>potential risks</small>
-        </button>
-        <div className="executive-scorecard">
-          <span>Business areas</span><strong>{areas.length}</strong><small>potentially affected</small>
-        </div>
-        <div className="executive-scorecard">
-          <span>Priority routes</span><strong>{new Set(priority.map((entry) => entry.finding.route).filter(Boolean)).size}</strong><small>high / critical paths</small>
-        </div>
-        <div className="executive-scorecard">
-          <span>Review progress</span><strong>{reviewed}/{entries.length}</strong><small>decisions recorded</small>
-        </div>
-      </div>
-
-      <div className="executive-grid">
-        <section className="impact-heatmap" aria-labelledby="impact-heatmap-title">
-          <div className="executive-section-heading">
-            <div><span>Business exposure</span><h4 id="impact-heatmap-title">Impact heatmap</h4></div>
-            <button type="button" className="text-button" onClick={() => onSelectArea('')} aria-pressed={!selectedArea}>Show all</button>
-          </div>
-          <p>Choose an area to focus the risk list on the possible business impact.</p>
-          <div className="heatmap-cells">
-            {areas.slice(0, 6).map((area) => (
-              <button
-                type="button"
-                key={area.name}
-                className={`heatmap-cell ${selectedArea === area.name ? 'selected' : ''}`}
-                style={{ '--heat': Math.min(1, area.weight / Math.max(1, areas[0]?.weight || 1)) } as CSSProperties}
-                onClick={() => onSelectArea(selectedArea === area.name ? '' : area.name)}
-                aria-pressed={selectedArea === area.name}
-              >
-                <span>{area.name}</span><strong>{area.count}</strong><small>potential risks</small>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="risk-journey" aria-labelledby="risk-journey-title">
-          <div className="executive-section-heading">
-            <div><span>From request to consequence</span><h4 id="risk-journey-title">Risk journey</h4></div>
-            <small>Choose a risk to trace its business impact</small>
-          </div>
-          {journey ? (
-            <>
-              <div className="journey-picker" aria-label="Choose a potential risk">
-                {relevant.slice(0, 4).map((entry, index) => (
-                  <button type="button" key={entry.finding.id} onClick={() => onSelectFinding(entry.finding.id)} aria-pressed={journey.finding.id === entry.finding.id}>
-                    <span>Risk {index + 1}</span>{entry.finding.route || entry.finding.title}
-                  </button>
-                ))}
-              </div>
-              <div className="journey-steps">
-                <div className="journey-step journey-entry"><span>01</span><small>Entry point</small><strong>{journey.finding.route || 'Application path'}</strong></div>
-                <ArrowRight className="journey-arrow" aria-hidden="true" />
-                <div className="journey-step journey-area"><span>02</span><small>Affected area</small><strong>{journeyArea}</strong></div>
-                <ArrowRight className="journey-arrow journey-arrow-consequence" aria-hidden="true" />
-                <div className="journey-step journey-consequence"><span>03</span><small>Possible business consequence</small><strong>{journey.impact?.business_impact || journey.finding.impact}</strong></div>
-              </div>
-              <Button variant="outline" size="sm" onClick={() => onOpenFinding(journey.finding)}>Open this finding <ArrowUpRight size={14} /></Button>
-            </>
-          ) : <p className="executive-empty">Business-impact explanations will appear here when the local model has finished.</p>}
-        </section>
-      </div>
-
-      <section className="executive-risks" aria-labelledby="executive-risks-title">
-        <div className="executive-section-heading">
-          <div><span>{selectedArea || 'All business areas'}</span><h4 id="executive-risks-title">What deserves attention</h4></div>
-          <small>{relevant.length} potential risk{relevant.length === 1 ? '' : 's'}</small>
-        </div>
-        <div className="executive-risk-list">
-          {relevant.slice(0, 5).map((entry) => (
-            <button type="button" key={entry.finding.id} className="executive-risk-row" onClick={() => onOpenFinding(entry.finding)}>
-              <span className={`plain-severity ${entry.finding.severity}`}><i /> {severityMessage(entry.finding.severity)} <small>{entry.finding.severity}</small></span>
-              <div><strong>{entry.finding.route || entry.finding.title}</strong><p>{entry.impact?.business_impact || entry.finding.impact}</p></div>
-              <span className="executive-area-tag">{entry.areas[0]}</span><ChevronRight size={16} aria-hidden="true" />
-            </button>
-          ))}
-        </div>
+      <section className="business-brief-steps" aria-label="Business review steps">
+        <article><span>1</span><div><small>What we saw</small><strong>{priority.length ? priority.length + ' priority items need review' : entries.length + ' potential items were reported'}</strong><p>These are source-backed candidates, not confirmed breaches.</p></div></article>
+        <article><span>2</span><div><small>What could be affected</small><strong>{areas.length ? areas.slice(0, 2).map((area) => area.name).join(' and ') : 'Your product operations'}</strong><p>Business areas are advisory context used to organize the review.</p></div></article>
+        <article><span>3</span><div><small>What to do now</small><strong>Decide whether the recorded control is sufficient</strong><p>Open a scenario, inspect its evidence, then confirm, dismiss, or keep it open.</p></div></article>
       </section>
+
+      <section className="business-scenarios" aria-labelledby="business-scenarios-title">
+        <header>
+          <div><span>{selectedAreaName || 'All business areas'}</span><h4 id="business-scenarios-title">The conversations to have first</h4></div>
+          <small aria-live="polite">{relevant.length + ' potential review item' + (relevant.length === 1 ? '' : 's')}</small>
+        </header>
+        <div className="business-area-filter" role="group" aria-label="Filter scenarios by business area">
+          <button type="button" aria-controls="business-scenario-list" aria-pressed={!selectedArea} onClick={() => onSelectArea('')}>All areas <span>{entries.length}</span></button>
+          {areas.slice(0, 5).map((area) => <button type="button" aria-controls="business-scenario-list" key={area.key} aria-pressed={selectedArea === area.key} onClick={() => onSelectArea(selectedArea === area.key ? '' : area.key)}>{area.name}<span>{area.count}</span></button>)}
+        </div>
+        {relevant.length ? <div id="business-scenario-list" className="business-scenario-list" aria-live="polite">{relevant.slice(0, 4).map((entry, index) => (
+          <article key={entry.finding.id}>
+            <span className="scenario-number">{'0' + (index + 1)}</span>
+            <div>
+              <small>Potential outcome · {entry.finding.route ? 'Customer-facing operation' : 'Service safeguard'}</small>
+              <h5>{businessConsequence(entry.finding)}</h5>
+              <p><strong>What creates this possibility:</strong> {businessTrigger(entry.finding)}</p>
+            </div>
+            <div className="scenario-actions">
+              <span className={'plain-severity ' + entry.finding.severity}><i />{severityMessage(entry.finding.severity)}</span>
+              <Button variant="outline" size="sm" onClick={() => onOpenFinding(entry.finding)}>See evidence <ArrowUpRight size={14} /></Button>
+            </div>
+          </article>
+        ))}</div> : <p className="business-empty">There are no potential risks in this area. Choose another area or check Technical Evidence for coverage details.</p>}
+      </section>
+
+      {topRisk && <section className="business-next">
+        <div><span>A simple way to use this view</span><h4>Start with the consequence, then verify the proof.</h4><p>Select a conversation above to see its related source path, INVARIANT decision ledger, assumptions, and remediation.</p></div>
+        <Button variant="outline" onClick={() => onOpenFinding(topRisk.finding)}>Open the first review <ArrowUpRight size={15} /></Button>
+      </section>}
     </section>
   );
 }
@@ -575,9 +867,9 @@ export default function Home() {
   const [finding, setFinding] = useState<Finding | null>(null),
     [note, setNote] = useState(''),
     [saving, setSaving] = useState(false),
+    [lens, setLens] = useState<'business' | 'technical'>('business'),
     [tab, setTab] = useState('summary'),
     [executiveArea, setExecutiveArea] = useState(''),
-    [journeyFindingId, setJourneyFindingId] = useState(''),
     [graphRoute, setGraphRoute] = useState(''),
     [graphNodeId, setGraphNodeId] = useState('');
   const refresh = useCallback(async () => {
@@ -612,9 +904,11 @@ export default function Home() {
     let active = true;
     setScan(null);
     setFinding(null);
-    setTab('summary');
+    const requestedLens = new URLSearchParams(window.location.search).get('lens');
+    const nextLens = requestedLens === 'technical' ? 'technical' : 'business';
+    setLens(nextLens);
+    setTab(nextLens === 'business' ? 'summary' : 'findings');
     setExecutiveArea('');
-    setJourneyFindingId('');
     setGraphRoute('');
     const update = () =>
       api<Scan>('/scans/' + selected)
@@ -725,17 +1019,20 @@ export default function Home() {
           weight: severityWeight(currentFinding.severity),
         };
       })
-      .sort((left, right) => right.weight - left.weight),
+      .sort((left, right) =>
+        Number(right.finding.rule_id === 'BFL001') - Number(left.finding.rule_id === 'BFL001') || right.weight - left.weight,
+      ),
     [scan?.findings, businessImpacts],
   );
   const executiveAreas = useMemo<ExecutiveArea[]>(() => {
     const totals = new Map<string, ExecutiveArea>();
     for (const entry of executiveEntries) {
       for (const area of entry.areas) {
-        const current = totals.get(area) || { name: area, count: 0, weight: 0 };
+        const key = areaKey(area);
+        const current = totals.get(key) || { key, name: area.trim(), count: 0, weight: 0 };
         current.count += 1;
         current.weight += entry.weight;
-        totals.set(area, current);
+        totals.set(key, current);
       }
     }
     return [...totals.values()].sort((left, right) =>
@@ -745,6 +1042,13 @@ export default function Home() {
   const openFinding = useCallback((currentFinding: Finding) => {
     setFinding(currentFinding);
     setNote(currentFinding.review_note || '');
+  }, []);
+  const changeLens = useCallback((nextLens: 'business' | 'technical', nextTab?: string) => {
+    setLens(nextLens);
+    setTab(nextTab || (nextLens === 'business' ? 'summary' : 'findings'));
+    const url = new URL(window.location.href);
+    url.searchParams.set('lens', nextLens);
+    window.history.replaceState(null, '', url);
   }, []);
   function addDocuments(files: FileList | null) {
     if (!files?.length) return;
@@ -793,7 +1097,7 @@ export default function Home() {
       });
       setComposerOpen(false);
       setSelected(r.id);
-      setTab('findings');
+      changeLens('technical', 'findings');
       setDocuments([]);
       await refresh();
     } catch (e) {
@@ -1040,7 +1344,7 @@ export default function Home() {
                 </span>
               </label>
               <small>
-                JS / TS <b>·</b> Express <b>·</b> Public repositories
+                  JS / TS / Python <b>·</b> Express <b>·</b> Public repositories
               </small>
             </div>
           </form>
@@ -1282,7 +1586,7 @@ export default function Home() {
                 )}
                 {scan.status === 'completed' && (
                   <>
-                    <div className="metrics">
+                    {lens === 'technical' && <div className="metrics">
                       <div>
                         <span>Findings to review</span>
                         <strong>
@@ -1323,6 +1627,16 @@ export default function Home() {
                           </small>
                         </strong>
                       </div>
+                    </div>}
+                    <div className="dashboard-lens" aria-label="Choose dashboard lens">
+                      <div>
+                        <span>View this scan through</span>
+                        <strong>{lens === 'business' ? 'Business risk' : 'Technical evidence'}</strong>
+                      </div>
+                      <div className="lens-switch">
+                        <button type="button" aria-pressed={lens === 'business'} onClick={() => changeLens('business')}>Business risk</button>
+                        <button type="button" aria-pressed={lens === 'technical'} onClick={() => changeLens('technical')}>Technical evidence</button>
+                      </div>
                     </div>
                     <Tabs
                       value={tab}
@@ -1331,31 +1645,39 @@ export default function Home() {
                     >
                       <div className="tabbar">
                         <TabsList variant="line">
-                          <TabsTrigger value="summary">
-                            <Activity size={14} />
-                            Executive summary
-                          </TabsTrigger>
-                          <TabsTrigger value="findings">
-                            <Shield size={14} />
-                            Findings
-                            <span className="count">
-                              {scan.summary?.total || 0}
-                            </span>
-                          </TabsTrigger>
-                          <TabsTrigger value="graph">
-                            <Network size={14} />
-                            Security graph
-                          </TabsTrigger>
-                          <TabsTrigger value="coverage">
-                            <SlidersHorizontal size={14} />
-                            Coverage & audit
-                          </TabsTrigger>
+                          {lens === 'business' ? <>
+                            <TabsTrigger value="summary"><Activity size={14} /> Decision briefing</TabsTrigger>
+                            <TabsTrigger value="model"><Network size={14} /> Product map</TabsTrigger>
+                          </> : <>
+                            <TabsTrigger value="findings"><Shield size={14} /> Findings <span className="count">{scan.summary?.total || 0}</span></TabsTrigger>
+                            <TabsTrigger value="graph"><Network size={14} /> Security graph</TabsTrigger>
+                            <TabsTrigger value="model"><Network size={14} /> Application model</TabsTrigger>
+                            <TabsTrigger value="coverage"><SlidersHorizontal size={14} /> Coverage & audit</TabsTrigger>
+                          </>}
                         </TabsList>
                         <span>
                           <ShieldCheck size={13} />
                           Source references checked
                         </span>
                       </div>
+                      <TabsContent value="model">
+                        {lens === 'business' ? (
+                          <ProductModel
+                            scan={scan}
+                            entries={executiveEntries}
+                            onOpenTechnical={() => changeLens('technical', 'model')}
+                          />
+                        ) : (
+                          <ApplicationModel
+                            scan={scan}
+                            onOpenGraph={(routeId) => {
+                              setGraphRoute(routeId);
+                              setGraphNodeId(routeId);
+                              changeLens('technical', 'graph');
+                            }}
+                          />
+                        )}
+                      </TabsContent>
                       <TabsContent value="summary">
                         <ExecutiveSummary
                           scan={scan}
@@ -1363,12 +1685,10 @@ export default function Home() {
                           areas={executiveAreas}
                           selectedArea={executiveArea}
                           onSelectArea={setExecutiveArea}
-                          selectedFindingId={journeyFindingId}
-                          onSelectFinding={setJourneyFindingId}
                           onOpenFinding={openFinding}
                           onOpenFindings={() => {
                             setExecutiveArea('');
-                            setTab('findings');
+                            changeLens('technical', 'findings');
                           }}
                         />
                       </TabsContent>
@@ -1399,6 +1719,7 @@ export default function Home() {
                               options={{
                                 all: 'All categories',
                                 authorization: 'Authorization',
+                                business_logic: 'Business flows',
                                 injection: 'Injection',
                                 secrets: 'Secrets',
                               }}
@@ -1808,6 +2129,18 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
+                {finding.algorithm && (
+                  <section className="invariant-ledger">
+                    <div className="ledger-heading"><div><span>INVARIANT decision ledger</span><h3>{finding.algorithm.code_name} {finding.algorithm.version}</h3></div><small>{finding.algorithm.evidence_gate.passed ? 'Evidence gate passed' : 'Evidence incomplete'}</small></div>
+                    <p>{finding.algorithm.hypothesis}</p>
+                    <div className="ledger-grid">
+                      <div><strong>Observed evidence</strong><span>{finding.algorithm.evidence_gate.observed_kinds.join(', ') || 'No recorded evidence kinds'}</span></div>
+                      <div><strong>Policy coverage</strong><span>{finding.algorithm.policy?.coverage || 'No repository policy matched'}</span></div>
+                    </div>
+                    {!!finding.algorithm.risk_signals.length && <div className="ledger-tags">{finding.algorithm.risk_signals.map((signal) => <span key={signal}>{signal}</span>)}</div>}
+                    {!!finding.algorithm.unresolved_conditions.length && <small className="ledger-note">Review condition: {finding.algorithm.unresolved_conditions[0]}</small>}
+                  </section>
+                )}
                 <section>
                   <h3>What we found</h3>
                   <p>{finding.summary}</p>

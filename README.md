@@ -2,6 +2,8 @@
 
 Invaria is a local application security MVP built from the supplied engineering blueprint and Week 1 roadmap. It reads a public GitHub repository, extracts Express routes and JavaScript/TypeScript structure, builds a security graph, generates evidence-backed candidates, optionally asks Gemma to review them, and saves a report for human review.
 
+The security decision policy is **INVARIANT** (Invariant-based Networked Verification and Attack-path Reasoning). Its implementation and the next evaluation gates are described in [docs/INVARIANT_ENGINE.md](docs/INVARIANT_ENGINE.md).
+
 **TaskForge is a scan target, not Invaria's codebase.** Its checkout is in the ignored `app/` directory. Invaria never installs or executes a scanned repository.
 
 ## Start locally
@@ -98,7 +100,7 @@ Public GitHub URL or bundled fixture
   → Immutable commit + bounded source-only ingestion
   → Tree-sitter JS/TS extraction in a subprocess
   → Typed route/function/query/model security graph
-  → BOLA, injection and credential hypotheses + Semgrep baseline
+  → BOLA, sensitive business-flow, injection and credential hypotheses + Semgrep baseline
   → Source evidence and trusted OWASP/CWE guidance
   → Optional Gemma structured review
   → Evidence/reference verification
@@ -126,11 +128,12 @@ Uploaded document metadata and bounded extracted text are retained in a separate
 ## Supported checks and practical limits
 
 - **Authorization:** request-derived lookups through common Sequelize, Prisma, Mongoose and array lookup patterns. Recognizes direct owner/tenant predicates against authenticated request identity in the same query. Authentication-like middleware names are observations, not proof that authentication is correct.
+- **Business flows:** request-controlled writes to high-impact financial, commerce, and state fields. Optional `.invaria/invariants.json` declares sensitive flows and expected server-side control markers. A marker confirms named code is present; it does not prove a transaction, idempotency, or state rule is semantically correct.
 - **Injection:** direct request input and basic local aliases reaching query text, eval or shell execution. Separate SQL value parameters are treated differently from executable statement text.
 - **Secrets:** credential-like string assignments with redacted evidence. A candidate may be a test credential and requires review.
 - **Parsing:** static Express routes, basic named handlers and relative imports, bounded local call following, route prefixes for simple mounts, Prisma/SQL schema names.
 
-The engine is **not a complete interprocedural taint analyzer**. Dynamic routers, complex module exports, parameter passing across functions, post-query authorization guards, full control-flow dominance, database row policies, custom sanitizers, external identity providers and other frameworks may be missed. Unsupported handlers and parsing failures are reported in coverage. A zero-finding result is not a security certificate.
+The engine is **not a complete interprocedural taint or state-machine analyzer**. Dynamic routers, complex module exports, parameter passing across functions, post-query authorization guards, full control-flow dominance, database row policies, custom sanitizers, external identity providers, semantic validation of business controls, and multi-step state transitions may be missed. Unsupported handlers and parsing failures are reported in coverage. A zero-finding result is not a security certificate.
 
 `static-evidence-verified` means file locations and snippets match the source snapshot. Model JSON and evidence IDs (plus explicit file:line citations) are checked. **Model prose is advisory and still needs human review.** Rule confidence is a fixed heuristic, not a calibrated probability. Findings are potential weaknesses, not dynamically demonstrated exploits. No generated patch, exploit execution, automatic PR, OAuth, organization accounts, GitHub App or multi-tenant deployment is included in this Week 1 scope.
 

@@ -1,0 +1,7 @@
+# Reference contract
+Reference retained at ../reference-paper.docx converted losslessly from the supplied legacy DOC with Microsoft Word. Original stays unchanged.
+A4 portrait. Full width centered 24 pt Times New Roman title. Author identity block 9 pt, centered, affiliation italic. Body two columns with 0.25 inch gap, 0.63 inch side margins, 0.75 inch top, 1 inch bottom. Body approximately 10 pt Times New Roman, justified, single spacing, first line indent about 0.2 inch. Bold 10 pt Roman numbered headings and decimal Roman subheadings. Three chart/caption pairs in results. Approximate length 5960 words and 8 pages.
+Editable slots: title, author identity, abstract, keywords, six main sections, methodology subsections, three figures, future scope subsections, references. All subject prose and images replaced. Single confirmed user identity used unless supplied otherwise. Old paper coauthors and IEEE copyright placeholder removed because they do not establish authorship or publication for INVARIA.
+Copy retained DOCX to preserve source styles, settings and page geometry, clone paragraph patterns. Author multi-column arrangement can be collapsed to one centered identity block. Last redundant single-column section removed. Original body styles retained; Title style used for title. References use numeric citations. Charts newly computed from fixtures and archived scan. No complex source fields or content controls need preservation.
+
+SHA256 eca60c114890a913057bbf73167042ddba1e00f03570129b781d2153ea51d076

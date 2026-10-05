@@ -1,0 +1,199 @@
+{"kind":"deck","id":"pr/toawom","name":"Deck"}
+{"kind":"layout","layoutId":"716803d7-84f0-452b-9a9a-02b9c9fccb0a","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"5f838c9f-6f32-4213-93a7-ea86c1dd6c2c","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/lcmyvt","slide":1,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":19}
+{"kind":"shape","id":"sh/pgn65obu","slide":1,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/2dcnu9s3","slide":1,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/nelo3eto","slide":1,"text":"Source: Invaria Engineering & Product Blueprint","textPreview":"Source: Invaria Engineering & Product Blueprint","textChars":47,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/0bu5sjax","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/1c361obi","slide":1,"bbox":[72,54,156,28]}
+{"kind":"textbox","id":"sh/e9cnq9s7","slide":1,"text":"PROBLEM STATEMENT","textPreview":"PROBLEM STATEMENT","textChars":17,"textLines":1,"bbox":[81,60,138,15]}
+{"kind":"textbox","id":"sh/falozetc","slide":1,"text":"AI-built apps can still\nhave security gaps","textPreview":"AI-built apps can still | have security gaps","textChars":42,"textLines":2,"bbox":[72,104,610,104]}
+{"kind":"textbox","id":"sh/k7yp43ah","slide":1,"text":"A feature can work correctly and still let the wrong person see data, change a transaction, or access a sensitive action.","textPreview":"A feature can work correctly and still let the wrong person see data, change a transaction, or access a sensitive action.","textChars":121,"textLines":1,"bbox":[72,235,565,64]}
+{"kind":"shape","id":"sh/l876d8r2","slide":1,"bbox":[72,340,540,0]}
+{"kind":"textbox","id":"sh/hwj29wze","slide":1,"text":"Simple example","textPreview":"Simple example","textChars":14,"textLines":1,"bbox":[72,379,200,20]}
+{"kind":"textbox","id":"sh/gvalgryt","slide":1,"text":"A user changes an ID in a URL. The app shows another customer's record because it never checks who owns that record.","textPreview":"A user changes an ID in a URL. The app shows another customer's record because it never checks who owns that record.","textChars":116,"textLines":1,"bbox":[72,416,545,68]}
+{"kind":"textbox","id":"sh/vu1k7mho","slide":1,"text":"The security issue sits in the full path from user request to database, not in only one line of code.","textPreview":"The security issue sits in the full path from user request to database, not in only one line of code.","textChars":101,"textLines":1,"bbox":[72,524,550,48]}
+{"kind":"shape","id":"sh/ut83ehg3","slide":1,"bbox":[740,99,468,465]}
+{"kind":"textbox","id":"sh/tsz25czi","slide":1,"text":"WHAT INVARIA DOES","textPreview":"WHAT INVARIA DOES","textChars":17,"textLines":1,"bbox":[780,143,230,18]}
+{"kind":"textbox","id":"sh/8rqlc7yx","slide":1,"text":"It checks whether\nthe app follows its\nimportant rules","textPreview":"It checks whether | the app follows its | important rules","textChars":53,"textLines":3,"bbox":[780,189,355,112]}
+{"kind":"textbox","id":"sh/7qhk3mhc","slide":1,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[780,350,28,18]}
+{"kind":"textbox","id":"sh/6p83ahgr","slide":1,"text":"Understand the app","textPreview":"Understand the app","textChars":18,"textLines":1,"bbox":[827,350,260,19]}
+{"kind":"textbox","id":"sh/do3mhgzm","slide":1,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[780,394,28,18]}
+{"kind":"textbox","id":"sh/cnuloby1","slide":1,"text":"Find a risky path","textPreview":"Find a risky path","textChars":17,"textLines":1,"bbox":[827,394,260,19]}
+{"kind":"textbox","id":"sh/w3mx0jap","slide":1,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[780,438,28,18]}
+{"kind":"textbox","id":"sh/x4ve9ora","slide":1,"text":"Show the proof","textPreview":"Show the proof","textChars":14,"textLines":1,"bbox":[827,438,260,19]}
+{"kind":"textbox","id":"sh/a1kfy9sj","slide":1,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[780,482,28,18]}
+{"kind":"textbox","id":"sh/b2dw7e94","slide":1,"text":"Help a human decide","textPreview":"Help a human decide","textChars":19,"textLines":1,"bbox":[827,482,260,19]}
+{"kind":"notes","id":"nt/lcmyvt","slide":1,"text":"Source: Invaria Engineering & Product Blueprint, sections 2 and 3.\n\nTalk track: Invaria focuses on security problems that appear when separate pieces of a product work together. One API might look safe by itself, but a request path can still expose another user's data or enable an unsafe action."}
+{"kind":"slide","id":"sl/8dfitt","slide":2,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":13}
+{"kind":"shape","id":"sh/t8nuxon6","slide":2,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/6lwbmtof","slide":2,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/r65cvy50","slide":2,"text":"Source: Invaria Engineering & Product Blueprint","textPreview":"Source: Invaria Engineering & Product Blueprint","textChars":47,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/gbyts36h","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/1c7ul8n2","slide":2,"bbox":[72,54,112,28]}
+{"kind":"textbox","id":"sh/e9wbqtob","slide":2,"text":"MARKET GAP","textPreview":"MARKET GAP","textChars":10,"textLines":1,"bbox":[81,60,94,15]}
+{"kind":"textbox","id":"sh/fapczy5w","slide":2,"text":"Coding tools help write code.\nSecurity review needs to understand the app.","textPreview":"Coding tools help write code. | Security review needs to understand the app.","textChars":74,"textLines":2,"bbox":[72,104,850,103]}
+{"kind":"textbox","id":"sh/wfutgj6d","slide":2,"text":"The gap is not a lack of code generation. The gap is knowing what users are allowed to do and checking that the code follows those rules.","textPreview":"The gap is not a lack of code generation. The gap is knowing what users are allowed to do and checking that the code follows those rules.","textChars":137,"textLines":1,"bbox":[72,230,790,54]}
+{"kind":"shape","id":"sh/hg3ap47y","slide":2,"bbox":[72,336,510,214]}
+{"kind":"textbox","id":"sh/5g3ydc3m","slide":2,"text":"CODING ASSISTANTS","textPreview":"CODING ASSISTANTS","textChars":17,"textLines":1,"bbox":[104,370,210,18]}
+{"kind":"textbox","id":"sh/4fuhk7m1","slide":2,"text":"Codex and Claude Code","textPreview":"Codex and Claude Code","textChars":21,"textLines":1,"bbox":[104,408,340,30]}
+{"kind":"textbox","id":"sh/julgb2lg","slide":2,"text":"They help developers write, explain, and review code.","textPreview":"They help developers write, explain, and review code.","textChars":53,"textLines":1,"bbox":[104,456,390,43]}
+{"kind":"shape","id":"sh/itczix4v","slide":2,"bbox":[626,336,582,214]}
+{"kind":"textbox","id":"sh/tknihc3i","slide":2,"text":"INVARIA","textPreview":"INVARIA","textChars":7,"textLines":1,"bbox":[660,370,180,18]}
+{"kind":"textbox","id":"sh/sjuho7mx","slide":2,"text":"A focused security review","textPreview":"A focused security review","textChars":25,"textLines":1,"bbox":[660,408,385,30]}
+{"kind":"textbox","id":"sh/ril0f2lc","slide":2,"text":"It maps the app, asks security questions, and shows the code path behind each possible issue.","textPreview":"It maps the app, asks security questions, and shows the code path behind each possible issue.","textChars":93,"textLines":1,"bbox":[660,456,430,43]}
+{"kind":"textbox","id":"sh/6hczmh4r","slide":2,"text":"The model helps reason about evidence. Invaria owns the security process around it.","textPreview":"The model helps reason about evidence. Invaria owns the security process around it.","textChars":83,"textLines":1,"bbox":[72,596,1000,31]}
+{"kind":"notes","id":"nt/8dfitt","slide":2,"text":"Source: Invaria Engineering & Product Blueprint, section 2.\n\nTalk track: We do not position Invaria as a replacement for coding assistants. The blueprint says the key idea clearly: Invaria owns the security reasoning process and uses an LLM as one component inside that process."}
+{"kind":"slide","id":"sl/wfd0k2","slide":3,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":16}
+{"kind":"shape","id":"sh/y1cvqhkf","slide":3,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/l43elcj6","slide":3,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/k3udsr2l","slide":3,"text":"Screenshot: live local Invaria workspace, captured 24 Sep 2026","textPreview":"Screenshot: live local Invaria workspace, captured 24 Sep 2026","textChars":62,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/76lwnm1w","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/m5cvuhkr","slide":3,"bbox":[72,54,120,28]}
+{"kind":"textbox","id":"sh/9s3epwj2","slide":3,"text":"OUR PLATFORM","textPreview":"OUR PLATFORM","textChars":12,"textLines":1,"bbox":[81,60,102,15]}
+{"kind":"textbox","id":"sh/87udwr2h","slide":3,"text":"What is Invaria?","textPreview":"What is Invaria?","textChars":16,"textLines":1,"bbox":[72,105,520,52]}
+{"kind":"textbox","id":"sh/na1cb2ls","slide":3,"text":"Invaria reads a software repository and gives the team a clear security review.","textPreview":"Invaria reads a software repository and gives the team a clear security review.","textChars":79,"textLines":1,"bbox":[72,179,560,48]}
+{"kind":"textbox","id":"sh/298vixk7","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,294,26,18]}
+{"kind":"textbox","id":"sh/4b6xwb6p","slide":3,"text":"Repository","textPreview":"Repository","textChars":10,"textLines":1,"bbox":[116,290,170,24]}
+{"kind":"textbox","id":"sh/pczy5gna","slide":3,"text":"Connect a GitHub or GitLab project","textPreview":"Connect a GitHub or GitLab project","textChars":34,"textLines":1,"bbox":[116,322,450,26]}
+{"kind":"textbox","id":"sh/29ofu1oz","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[72,377,26,18]}
+{"kind":"textbox","id":"sh/3axg3654","slide":3,"text":"Analysis","textPreview":"Analysis","textChars":8,"textLines":1,"bbox":[116,373,170,24]}
+{"kind":"textbox","id":"sh/czqx0v61","slide":3,"text":"Read code, APIs, data, and access rules","textPreview":"Read code, APIs, data, and access rules","textChars":39,"textLines":1,"bbox":[116,405,450,26]}
+{"kind":"textbox","id":"sh/d0zy90nm","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[72,460,26,18]}
+{"kind":"textbox","id":"sh/qx8fylov","slide":3,"text":"Report","textPreview":"Report","textChars":6,"textLines":1,"bbox":[116,456,170,24]}
+{"kind":"textbox","id":"sh/ryhg7q5g","slide":3,"text":"Show possible risks, proof, and suggested fixes","textPreview":"Show possible risks, proof, and suggested fixes","textChars":47,"textLines":1,"bbox":[116,488,450,26]}
+{"kind":"textbox","id":"sh/t4fyxwn2","slide":3,"text":"The dashboard can show both the technical evidence and the business impact.","textPreview":"The dashboard can show both the technical evidence and the business impact.","textChars":75,"textLines":1,"bbox":[655,505,520,35]}
+{"kind":"image","id":"im/ridobehg","slide":3,"name":"","geometry":"roundRect","alt":"Live Invaria workspace","bbox":[655,93,553,388]}
+{"kind":"notes","id":"nt/wfd0k2","slide":3,"text":"Source: Invaria Engineering & Product Blueprint, section 2. Screenshot: live local Invaria workspace.\n\nTalk track: This is the product in one sentence. A team connects a repository, Invaria understands the code and important data paths, then it produces a review that a developer or product owner can use."}
+{"kind":"slide","id":"sl/72u3xn","slide":4,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":22}
+{"kind":"shape","id":"sh/jylg3mtk","slide":4,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/4zuxcru5","slide":4,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/503y5cbq","slide":4,"text":"Source: Invaria Engineering & Product Blueprint","textPreview":"Source: Invaria Engineering & Product Blueprint","textChars":47,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/61cfehcb","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/r25g7mtw","slide":4,"bbox":[72,54,120,28]}
+{"kind":"textbox","id":"sh/s3exgrah","slide":4,"text":"HOW IT WORKS","textPreview":"HOW IT WORKS","textChars":12,"textLines":1,"bbox":[81,60,102,15]}
+{"kind":"textbox","id":"sh/t4ny9wbm","slide":4,"text":"From repository to security report","textPreview":"From repository to security report","textChars":34,"textLines":1,"bbox":[72,105,800,53]}
+{"kind":"textbox","id":"sh/e5wfi1s7","slide":4,"text":"The blueprint describes one simple flow.","textPreview":"The blueprint describes one simple flow.","textChars":40,"textLines":1,"bbox":[72,179,620,28]}
+{"kind":"shape","id":"sh/f65gb6ts","slide":4,"bbox":[72,290,190,200]}
+{"kind":"textbox","id":"sh/3id0reps","slide":4,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[92,315,30,18]}
+{"kind":"textbox","id":"sh/2h4ji9o7","slide":4,"text":"Repository","textPreview":"Repository","textChars":10,"textLines":1,"bbox":[92,354,155,25]}
+{"kind":"textbox","id":"sh/pkvito7i","slide":4,"text":"A company connects its code","textPreview":"A company connects its code","textChars":27,"textLines":1,"bbox":[92,400,152,50]}
+{"kind":"shape","id":"sh/ojm1kj6d","slide":4,"bbox":[298,290,190,200]}
+{"kind":"textbox","id":"sh/fut0nepg","slide":4,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[318,315,30,18]}
+{"kind":"textbox","id":"sh/utkje9ov","slide":4,"text":"Scan","textPreview":"Scan","textChars":4,"textLines":1,"bbox":[318,354,155,25]}
+{"kind":"textbox","id":"sh/1gvip47m","slide":4,"text":"Invaria reads the code and APIs","textPreview":"Invaria reads the code and APIs","textChars":31,"textLines":1,"bbox":[318,400,152,50]}
+{"kind":"shape","id":"sh/gvm1gz61","slide":4,"bbox":[524,290,190,200]}
+{"kind":"textbox","id":"sh/zqxkzyp0","slide":4,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[544,315,30,18]}
+{"kind":"textbox","id":"sh/ypojqtof","slide":4,"text":"App map","textPreview":"App map","textChars":7,"textLines":1,"bbox":[544,354,155,25]}
+{"kind":"textbox","id":"sh/als3yx8n","slide":4,"text":"It maps users, data, and routes","textPreview":"It maps users, data, and routes","textChars":31,"textLines":1,"bbox":[544,400,152,50]}
+{"kind":"shape","id":"sh/v614r298","slide":4,"bbox":[750,290,190,200]}
+{"kind":"textbox","id":"sh/w7al07qt","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[770,315,30,18]}
+{"kind":"textbox","id":"sh/x8jmtcry","slide":4,"text":"Questions","textPreview":"Questions","textChars":9,"textLines":1,"bbox":[770,354,155,25]}
+{"kind":"textbox","id":"sh/i9s32h8j","slide":4,"text":"It asks what could go wrong","textPreview":"It asks what could go wrong","textChars":27,"textLines":1,"bbox":[770,400,152,50]}
+{"kind":"shape","id":"sh/ja14vmp4","slide":4,"bbox":[976,290,190,200]}
+{"kind":"textbox","id":"sh/kba547qp","slide":4,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[996,315,30,18]}
+{"kind":"textbox","id":"sh/5cjmxc7a","slide":4,"text":"Report","textPreview":"Report","textChars":6,"textLines":1,"bbox":[996,354,155,25]}
+{"kind":"textbox","id":"sh/ydo3qd8f","slide":4,"text":"It shows evidence and a fix","textPreview":"It shows evidence and a fix","textChars":27,"textLines":1,"bbox":[996,400,152,50]}
+{"kind":"shape","id":"sh/zeh4ji90","slide":4,"bbox":[262,390,36,0]}
+{"kind":"shape","id":"sh/1k7ylkfu","slide":4,"bbox":[488,390,36,0]}
+{"kind":"shape","id":"sh/gjyxcfe9","slide":4,"bbox":[714,390,36,0]}
+{"kind":"shape","id":"sh/fipgjaxo","slide":4,"bbox":[940,390,36,0]}
+{"kind":"shape","id":"sh/ehwfa5w3","slide":4,"bbox":[72,545,1136,71]}
+{"kind":"textbox","id":"sh/p87ypkvq","slide":4,"text":"The LLM helps with reasoning, but the final report must have code and data-flow evidence.","textPreview":"The LLM helps with reasoning, but the final report must have code and data-flow evidence.","textChars":89,"textLines":1,"bbox":[105,565,950,28]}
+{"kind":"notes","id":"nt/72u3xn","slide":4,"text":"Source: Invaria Engineering & Product Blueprint, section 2.\n\nTalk track: This slide follows the blueprint exactly. We start with the repository, scan it, build a map of how the application works, ask security questions, verify the evidence, and create a report."}
+{"kind":"slide","id":"sl/ndj7er","slide":5,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":17}
+{"kind":"shape","id":"sh/onmxwby9","slide":5,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/nmdwnqho","slide":5,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/2lkfulgj","slide":5,"text":"Screenshot: live INVARIANT decision ledger, captured 24 Sep 2026","textPreview":"Screenshot: live INVARIANT decision ledger, captured 24 Sep 2026","textChars":64,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/xcvyt0z6","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/cbmx0vyl","slide":5,"bbox":[72,54,222,28]}
+{"kind":"textbox","id":"sh/badgrqh0","slide":5,"text":"THE INVARIANT ALGORITHM","textPreview":"THE INVARIANT ALGORITHM","textChars":23,"textLines":1,"bbox":[81,60,204,15]}
+{"kind":"textbox","id":"sh/a94fylgf","slide":5,"text":"It checks the rules\nthat must always be true","textPreview":"It checks the rules | that must always be true","textChars":44,"textLines":2,"bbox":[72,105,600,94]}
+{"kind":"textbox","id":"sh/dgbehwzm","slide":5,"text":"An invariant is a simple security rule for the application.","textPreview":"An invariant is a simple security rule for the application.","textChars":59,"textLines":1,"bbox":[72,220,550,29]}
+{"kind":"textbox","id":"sh/sf2xory1","slide":5,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,304,25,18]}
+{"kind":"textbox","id":"sh/q1onm14j","slide":5,"text":"User data","textPreview":"User data","textChars":9,"textLines":1,"bbox":[115,302,170,23]}
+{"kind":"textbox","id":"sh/r2xov654","slide":5,"text":"A user should only see their own data","textPreview":"A user should only see their own data","textChars":37,"textLines":1,"bbox":[115,333,465,28]}
+{"kind":"textbox","id":"sh/s365obmp","slide":5,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[72,382,25,18]}
+{"kind":"textbox","id":"sh/d4f6xgna","slide":5,"text":"Money actions","textPreview":"Money actions","textChars":13,"textLines":1,"bbox":[115,380,170,23]}
+{"kind":"textbox","id":"sh/e587ql4v","slide":5,"text":"A refund or withdrawal should follow the right checks","textPreview":"A refund or withdrawal should follow the right checks","textChars":53,"textLines":1,"bbox":[115,411,465,28]}
+{"kind":"textbox","id":"sh/f6hozq5g","slide":5,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[72,460,25,18]}
+{"kind":"textbox","id":"sh/07qpsvm1","slide":5,"text":"Secrets","textPreview":"Secrets","textChars":7,"textLines":1,"bbox":[115,458,170,23]}
+{"kind":"textbox","id":"sh/18z61gn6","slide":5,"text":"Passwords and keys should not sit in source code","textPreview":"Passwords and keys should not sit in source code","textChars":48,"textLines":1,"bbox":[115,489,465,28]}
+{"kind":"textbox","id":"sh/2t87ul4r","slide":5,"text":"INVARIANT follows the code path and checks whether the rule is being followed.","textPreview":"INVARIANT follows the code path and checks whether the rule is being followed.","textChars":78,"textLines":1,"bbox":[72,558,550,42]}
+{"kind":"textbox","id":"sh/zy1orq1k","slide":5,"text":"For every possible issue, the tool records the evidence and what a human still needs to check.","textPreview":"For every possible issue, the tool records the evidence and what a human still needs to check.","textChars":94,"textLines":1,"bbox":[682,540,500,45]}
+{"kind":"image","id":"im/sjm5cbyh","slide":5,"name":"","geometry":"roundRect","alt":"Live Invaria decision ledger","bbox":[682,108,526,410]}
+{"kind":"notes","id":"nt/ndj7er","slide":5,"text":"Source: Invaria Engineering & Product Blueprint, sections 2 and 3; docs/INVARIANT_ENGINE.md. Screenshot: live Invaria decision ledger.\n\nTalk track: INVARIANT is the product's decision engine. It starts with a rule, follows the relevant code path, and checks whether the code can prove that the rule is protected. If it cannot, it gives the reviewer the evidence instead of pretending that the issue is already confirmed."}
+{"kind":"slide","id":"sl/9lhdvm","slide":6,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":13}
+{"kind":"shape","id":"sh/m1076x8v","slide":6,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/94bqhcr6","slide":6,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/83ip87ql","slide":6,"text":"Source: Invaria Engineering & Product Blueprint, section 3","textPreview":"Source: Invaria Engineering & Product Blueprint, section 3","textChars":58,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/v6t8j29c","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/u5k7ah8r","slide":6,"bbox":[72,54,150,28]}
+{"kind":"textbox","id":"sh/h8bqlcri","slide":6,"text":"REAL-LIFE EXAMPLES","textPreview":"REAL-LIFE EXAMPLES","textChars":18,"textLines":1,"bbox":[81,60,132,15]}
+{"kind":"textbox","id":"sh/w72pc7qx","slide":6,"text":"The same idea works in many applications","textPreview":"The same idea works in many applications","textChars":40,"textLines":1,"bbox":[72,105,900,53]}
+{"kind":"shape","id":"sh/bapo7i98","slide":6,"bbox":[72,245,332,190]}
+{"kind":"textbox","id":"sh/q9g7yd8n","slide":6,"text":"Fintech","textPreview":"Fintech","textChars":7,"textLines":1,"bbox":[100,276,260,28]}
+{"kind":"textbox","id":"sh/gr2h83y1","slide":6,"text":"Can a user change a refund or withdraw money that is not theirs?","textPreview":"Can a user change a refund or withdraw money that is not theirs?","textChars":64,"textLines":1,"bbox":[100,330,270,62]}
+{"kind":"shape","id":"sh/hsbyh8zm","slide":6,"bbox":[443,245,332,190]}
+{"kind":"textbox","id":"sh/up0z6tgv","slide":6,"text":"Healthcare","textPreview":"Healthcare","textChars":10,"textLines":1,"bbox":[471,276,260,28]}
+{"kind":"textbox","id":"sh/fqtgfyhg","slide":6,"text":"Can one patient open another patient's medical record?","textPreview":"Can one patient open another patient's medical record?","textChars":54,"textLines":1,"bbox":[471,330,270,62]}
+{"kind":"shape","id":"sh/4v2hcnyd","slide":6,"bbox":[814,245,332,190]}
+{"kind":"textbox","id":"sh/pwbil8zi","slide":6,"text":"SaaS","textPreview":"SaaS","textChars":4,"textLines":1,"bbox":[842,276,260,28]}
+{"kind":"textbox","id":"sh/2tkzadg7","slide":6,"text":"Can changing an ID reveal another company's files or invoices?","textPreview":"Can changing an ID reveal another company's files or invoices?","textChars":62,"textLines":1,"bbox":[842,330,270,62]}
+{"kind":"textbox","id":"sh/kzih0jyt","slide":6,"text":"Invaria maps the path from a user request to the sensitive data or action.","textPreview":"Invaria maps the path from a user request to the sensitive data or action.","textChars":74,"textLines":1,"bbox":[736,514,410,44]}
+{"kind":"textbox","id":"sh/l0ry9oze","slide":6,"text":"Then it asks whether the app has the right security check in that path.","textPreview":"Then it asks whether the app has the right security check in that path.","textChars":71,"textLines":1,"bbox":[736,574,410,32]}
+{"kind":"image","id":"im/cfix0vql","slide":6,"name":"","geometry":"roundRect","alt":"Invaria security graph","bbox":[72,491,623,123]}
+{"kind":"notes","id":"nt/9lhdvm","slide":6,"text":"Source: Invaria Engineering & Product Blueprint, section 3. Screenshot: live Invaria graph.\n\nTalk track: The blueprint gives these examples because the security idea stays the same across industries. Invaria asks who is making the request, what they are trying to access or change, and whether the code protects that action."}
+{"kind":"slide","id":"sl/00jr25","slide":7,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":23}
+{"kind":"shape","id":"sh/doza1wfe","slide":7,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/qlob6hw3","slide":7,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/rmhszmxo","slide":7,"text":"Source: Invaria Engineering & Product Blueprint","textPreview":"Source: Invaria Engineering & Product Blueprint","textChars":47,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/0rqtcbe5","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/1czu5wfq","slide":7,"bbox":[72,54,155,28]}
+{"kind":"textbox","id":"sh/ep8ba1wz","slide":7,"text":"TARGET CUSTOMERS","textPreview":"TARGET CUSTOMERS","textChars":16,"textLines":1,"bbox":[81,60,137,15]}
+{"kind":"textbox","id":"sh/fqhc36xk","slide":7,"text":"Who will use Invaria?","textPreview":"Who will use Invaria?","textChars":21,"textLines":1,"bbox":[72,105,600,52]}
+{"kind":"textbox","id":"sh/gv6t07y1","slide":7,"text":"Teams that build products with user data, money movement, or important business actions.","textPreview":"Teams that build products with user data, money movement, or important business actions.","textChars":88,"textLines":1,"bbox":[72,179,680,49]}
+{"kind":"textbox","id":"sh/hgfa9cfm","slide":7,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[72,284,25,18]}
+{"kind":"textbox","id":"sh/twzi50f6","slide":7,"text":"AI-built startups","textPreview":"AI-built startups","textChars":17,"textLines":1,"bbox":[116,281,255,23]}
+{"kind":"textbox","id":"sh/svq1wve1","slide":7,"text":"Fast-moving teams without a dedicated security team","textPreview":"Fast-moving teams without a dedicated security team","textChars":51,"textLines":1,"bbox":[116,312,520,25]}
+{"kind":"shape","id":"sh/ruh03qxg","slide":7,"bbox":[72,340,570,0]}
+{"kind":"textbox","id":"sh/6t8julwv","slide":7,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[72,355,25,18]}
+{"kind":"textbox","id":"sh/10jit0fi","slide":7,"text":"SaaS companies","textPreview":"SaaS companies","textChars":14,"textLines":1,"bbox":[116,352,255,23]}
+{"kind":"textbox","id":"sh/gza10vex","slide":7,"text":"Teams responsible for keeping customer data separate","textPreview":"Teams responsible for keeping customer data separate","textChars":52,"textLines":1,"bbox":[116,383,520,25]}
+{"kind":"shape","id":"sh/fy107axc","slide":7,"bbox":[72,411,570,0]}
+{"kind":"textbox","id":"sh/exsjy5wr","slide":7,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[72,426,25,18]}
+{"kind":"textbox","id":"sh/po32xkfe","slide":7,"text":"Fintech products","textPreview":"Fintech products","textChars":16,"textLines":1,"bbox":[116,423,255,23]}
+{"kind":"textbox","id":"sh/o3a14fe9","slide":7,"text":"Teams handling payments, wallets, refunds, or balances","textPreview":"Teams handling payments, wallets, refunds, or balances","textChars":54,"textLines":1,"bbox":[116,454,520,25]}
+{"kind":"shape","id":"sh/8j2tgnqh","slide":7,"bbox":[72,482,570,0]}
+{"kind":"textbox","id":"sh/9kbupsr2","slide":7,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[72,497,25,18]}
+{"kind":"textbox","id":"sh/mhkbed8b","slide":7,"text":"Healthcare products","textPreview":"Healthcare products","textChars":19,"textLines":1,"bbox":[116,494,255,23]}
+{"kind":"textbox","id":"sh/7itcni9w","slide":7,"text":"Teams protecting patient data and access rights","textPreview":"Teams protecting patient data and access rights","textChars":47,"textLines":1,"bbox":[116,525,520,25]}
+{"kind":"shape","id":"sh/w7mdknqd","slide":7,"bbox":[72,553,570,0]}
+{"kind":"shape","id":"sh/h8vutsry","slide":7,"bbox":[737,110,471,430]}
+{"kind":"textbox","id":"sh/ul4bix8n","slide":7,"text":"THE MAIN USER","textPreview":"THE MAIN USER","textChars":13,"textLines":1,"bbox":[779,151,200,18]}
+{"kind":"textbox","id":"sh/v6dcri98","slide":7,"text":"Developers and\nengineering leads","textPreview":"Developers and | engineering leads","textChars":32,"textLines":2,"bbox":[779,196,350,70]}
+{"kind":"textbox","id":"sh/cbit83q9","slide":7,"text":"They need a clear answer to one question:","textPreview":"They need a clear answer to one question:","textChars":41,"textLines":1,"bbox":[779,309,330,28]}
+{"kind":"textbox","id":"sh/xcruh8ru","slide":7,"text":"Does this product protect its users and important data?","textPreview":"Does this product protect its users and important data?","textChars":55,"textLines":1,"bbox":[779,360,347,56]}
+{"kind":"textbox","id":"sh/f6hwn6tc","slide":7,"text":"Invaria gives them a focused review before a release or major change.","textPreview":"Invaria gives them a focused review before a release or major change.","textChars":69,"textLines":1,"bbox":[779,452,340,46]}
+{"kind":"notes","id":"nt/00jr25","slide":7,"text":"Source: Invaria Engineering & Product Blueprint, section 3.\n\nTalk track: We start with teams that have real application risk but limited security capacity. The main user is the developer or engineering lead who needs a clear review before releasing a product or an important change."}
+{"kind":"slide","id":"sl/ce79c2","slide":8,"title":"INVARIA  |  REVIEW PRESENTATION","textShapes":12}
+{"kind":"shape","id":"sh/t0vep472","slide":8,"bbox":[72,670,1136,0]}
+{"kind":"textbox","id":"sh/6d4fu98b","slide":8,"text":"INVARIA  |  REVIEW PRESENTATION","textPreview":"INVARIA  |  REVIEW PRESENTATION","textChars":31,"textLines":1,"bbox":[72,686,300,14]}
+{"kind":"textbox","id":"sh/redwnupw","slide":8,"text":"Source: Invaria Engineering & Product Blueprint, sections 2 and 4","textPreview":"Source: Invaria Engineering & Product Blueprint, sections 2 and 4","textChars":65,"textLines":1,"bbox":[420,686,680,14]}
+{"kind":"textbox","id":"sh/kbmxszql","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1140,684,68,16]}
+{"kind":"shape","id":"sh/5cve147q","slide":8,"bbox":[72,54,105,28]}
+{"kind":"textbox","id":"sh/i9kvqp8f","slide":8,"text":"FUTURE SCOPE","textPreview":"FUTURE SCOPE","textChars":12,"textLines":1,"bbox":[81,60,87,15]}
+{"kind":"textbox","id":"sh/jatwzup0","slide":8,"text":"What is built now and what comes next","textPreview":"What is built now and what comes next","textChars":37,"textLines":1,"bbox":[72,105,950,53]}
+{"kind":"shape","id":"sh/o76x4j6p","slide":8,"bbox":[72,248,522,286]}
+{"kind":"textbox","id":"sh/p8fexo7a","slide":8,"text":"BUILT NOW","textPreview":"BUILT NOW","textChars":9,"textLines":1,"bbox":[106,282,180,18]}
+{"kind":"textbox","id":"sh/9gr2pcjy","slide":8,"text":"Repository scan","textPreview":"Repository scan","textChars":15,"textLines":1,"bbox":[106,323,365,28]}
+{"kind":"textbox","id":"sh/8fi1g72d","slide":8,"text":"Code and API mapping\nSecurity questions\nEvidence-backed reports","textPreview":"Code and API mapping | Security questions | Evidence-backed reports","textChars":63,"textLines":3,"bbox":[106,377,320,84]}
+{"kind":"shape","id":"sh/7u90n21s","slide":8,"bbox":[686,248,522,286]}
+{"kind":"textbox","id":"sh/mtgjexk7","slide":8,"text":"NEXT","textPreview":"NEXT","textChars":4,"textLines":1,"bbox":[720,282,140,18]}
+{"kind":"textbox","id":"sh/ls7ilsjm","slide":8,"text":"Broader coverage","textPreview":"Broader coverage","textChars":16,"textLines":1,"bbox":[720,323,375,28]}
+{"kind":"textbox","id":"sh/kry1cn21","slide":8,"text":"More frameworks and languages\nDeeper business-flow checks\nSuggested fixes and future pull requests","textPreview":"More frameworks and languages | Deeper business-flow checks | Suggested fixes and future pull requests","textChars":98,"textLines":3,"bbox":[720,377,410,84]}
+{"kind":"shape","id":"sh/zqp0ji1w","slide":8,"bbox":[594,391,92,0]}
+{"kind":"shape","id":"sh/ypgjaxkb","slide":8,"bbox":[72,585,1136,53]}
+{"kind":"textbox","id":"sh/5ob2xwj6","slide":8,"text":"Goal: give every product team a clear, evidence-based security review before they ship.","textPreview":"Goal: give every product team a clear, evidence-based security review before they ship.","textChars":87,"textLines":1,"bbox":[105,600,940,23]}
+{"kind":"notes","id":"nt/ce79c2","slide":8,"text":"Source: Invaria Engineering & Product Blueprint, sections 2 and 4.\n\nTalk track: The blueprint gives us a clear direction. Today the product can scan a repository, map its structure, find supported security issues, and report them. Next we will support more technologies, check deeper workflows, and help teams fix issues through future pull requests."}

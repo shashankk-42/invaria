@@ -5,7 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 
-const links = [{ href: '/', label: 'Overview' }, { href: '/product', label: 'Product' }, { href: '/pricing', label: 'Pricing' }];
+const links = [
+  { href: '/', label: 'Overview' },
+  { href: '/product', label: 'Product' },
+  { href: '/invariant', label: 'INVARIANT' },
+  { href: '/customers', label: 'Customers' },
+  { href: '/pricing', label: 'Pricing' },
+];
 
 export function SiteNav() {
   const pathname = usePathname();
@@ -27,7 +33,7 @@ export function SiteNav() {
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer"><div className="footer-top"><Link href="/" className="wordmark">invaria</Link><p>Understand the code.<br />Make the call.</p><nav aria-label="Footer navigation"><Link href="/product">Product</Link><Link href="/pricing">Pricing</Link><Link href="/workspace">Workspace</Link></nav></div><div className="footer-bottom"><span>© 2026 Invaria</span><span>Built for evidence. Designed for people.</span><span>Local-first · Developer preview</span></div></footer>;
+  return <footer className="site-footer"><div className="footer-top"><Link href="/" className="wordmark">invaria</Link><p>Protect the business logic<br />that makes your product work.</p><nav aria-label="Footer navigation"><Link href="/product">Product</Link><Link href="/invariant">INVARIANT</Link><Link href="/customers">Customers</Link><Link href="/pricing">Pricing</Link><Link href="/workspace">Workspace</Link></nav></div><div className="footer-bottom"><span>© 2026 Invaria</span><span>Built for evidence. Designed for people.</span><span>Local-first · Developer preview</span></div></footer>;
 }
 
 export function ScrollReveal() {

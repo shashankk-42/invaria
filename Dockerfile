@@ -3,10 +3,11 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 INVARIA_FIXTURE_DIR=/app/fixtures
 RUN apt-get update && apt-get install -y --no-install-recommends antiword git && rm -rf /var/lib/apt/lists/*
 COPY pyproject.toml requirements.lock ./
+RUN pip install -r requirements.lock
+RUN python -m venv /opt/semgrep && /opt/semgrep/bin/pip install 'semgrep==1.136.0' && ln -s /opt/semgrep/bin/semgrep /usr/local/bin/semgrep
 COPY backend ./backend
 COPY fixtures ./fixtures
-RUN pip install -r requirements.lock && pip install --no-deps .
-RUN python -m venv /opt/semgrep && /opt/semgrep/bin/pip install 'semgrep==1.136.0' && ln -s /opt/semgrep/bin/semgrep /usr/local/bin/semgrep
+RUN pip install --no-deps .
 RUN useradd --create-home --uid 10001 scanner && mkdir -p /app/.data && chown scanner:scanner /app/.data
 USER scanner
 EXPOSE 8000

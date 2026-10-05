@@ -3,6 +3,7 @@ import shutil
 from collections import Counter
 from time import perf_counter
 
+from .algorithm import decision_record, scan_ledger
 from .config import settings
 from .documents import process_documents
 from .engine import verify
@@ -59,6 +60,15 @@ def execute_scan(id, request):
         stage("baseline", "Running deterministic security checks and the optional Semgrep baseline.")
         extra, semgrep = run_semgrep(root, files)
         for candidate in extra:
+            candidate.algorithm = decision_record(
+                candidate,
+                uncertainties=candidate.assumptions,
+                risk_signals=["external deterministic baseline"],
+            )
+            candidate.confidence = candidate.algorithm["confidence"]
+            if candidate.algorithm["decision"] != "reported":
+                warnings.append(f"Baseline candidate {candidate.id} did not satisfy the INVARIANT evidence gate.")
+                continue
             if not any(
                 f.category == candidate.category
                 and any(
@@ -69,6 +79,9 @@ def execute_scan(id, request):
                 for f in findings
             ):
                 findings.append(candidate)
+        # This includes first-party and Semgrep candidates. The worker's
+        # initial ledger only covers candidates generated before this stage.
+        analysis["algorithm"] = scan_ledger(findings)
         stage("reasoning", "Retrieving trusted guidance and reviewing evidence bundles.")
         health = model_health() if request.use_model else {"reasoning_ready": False}
         model_status = (
@@ -110,9 +123,13 @@ def execute_scan(id, request):
         verified = [f for f in findings if verify(f, files)]
         if len(verified) != len(findings):
             warnings.append("Findings with inconsistent evidence were rejected.")
-        if not analysis["routes"]:
+        if analysis["coverage"].get("javascript_files") and not analysis["routes"]:
             warnings.append(
                 "No supported Express routes found. Zero route findings does not mean this application is safe."
+            )
+        elif not analysis["routes"]:
+            warnings.append(
+                "No supported server routes were found. Direct Python and client configuration checks ran; zero findings does not mean this application is safe."
             )
         stage("report", "Saving findings, graph, coverage and model audit records.")
         counts = Counter(f.severity for f in verified)
@@ -132,7 +149,7 @@ def execute_scan(id, request):
             duration_seconds=round(perf_counter() - started, 2),
             summary={"total": len(verified), **{s: counts[s] for s in ["critical", "high", "medium", "low"]}},
             limitations=[
-                "JavaScript/TypeScript and statically declared Express routes only.",
+                "Express routes receive bounded JavaScript/TypeScript analysis. Python credential fallbacks and Firebase client configuration receive direct source checks.",
                 "Bounded syntax and local alias analysis; no complete control-flow, type, or runtime proof.",
                 "Authorization candidates require confirmation of the resource access policy and external controls.",
                 "Model prose is advisory; only its schema and evidence references are mechanically validated.",

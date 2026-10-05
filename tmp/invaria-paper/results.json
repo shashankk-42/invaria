@@ -1,0 +1,173 @@
+{
+  "evaluation_date": "2026-10-03",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cases": [
+    {
+      "case": "bola-fixed",
+      "expected": 0,
+      "actual": 0,
+      "rules": [],
+      "median_ms": 0.7081999792717397,
+      "p95_ms": 0.7825000211596489,
+      "min_ms": 0.6898999563418329,
+      "max_ms": 0.8655000128783286,
+      "coverage": {
+        "source_files": 3,
+        "parsed_files": 2,
+        "javascript_files": 2,
+        "python_files": 0,
+        "client_config_files": 0,
+        "routes": 1,
+        "resolved_routes": 1,
+        "functions": 1
+      },
+      "repetitions": 30
+    },
+    {
+      "case": "bola-vulnerable",
+      "expected": 1,
+      "actual": 1,
+      "rules": [
+        "BOLA001"
+      ],
+      "median_ms": 0.4157999937888235,
+      "p95_ms": 0.4528999561443925,
+      "min_ms": 0.4050999996252358,
+      "max_ms": 0.47670002095401287,
+      "coverage": {
+        "source_files": 3,
+        "parsed_files": 2,
+        "javascript_files": 2,
+        "python_files": 0,
+        "client_config_files": 0,
+        "routes": 1,
+        "resolved_routes": 1,
+        "functions": 1
+      },
+      "repetitions": 30
+    },
+    {
+      "case": "injection-fixed",
+      "expected": 0,
+      "actual": 0,
+      "rules": [],
+      "median_ms": 0.228749995585531,
+      "p95_ms": 0.25839998852461576,
+      "min_ms": 0.2231999533250928,
+      "max_ms": 0.26950001483783126,
+      "coverage": {
+        "source_files": 1,
+        "parsed_files": 1,
+        "javascript_files": 1,
+        "python_files": 0,
+        "client_config_files": 0,
+        "routes": 1,
+        "resolved_routes": 1,
+        "functions": 0
+      },
+      "repetitions": 30
+    },
+    {
+      "case": "injection-vulnerable",
+      "expected": 1,
+      "actual": 1,
+      "rules": [
+        "INJ001"
+      ],
+      "median_ms": 0.31835000845603645,
+      "p95_ms": 0.35500002559274435,
+      "min_ms": 0.3093000268563628,
+      "max_ms": 0.35930000012740493,
+      "coverage": {
+        "source_files": 1,
+        "parsed_files": 1,
+        "javascript_files": 1,
+        "python_files": 0,
+        "client_config_files": 0,
+        "routes": 1,
+        "resolved_routes": 1,
+        "functions": 0
+      },
+      "repetitions": 30
+    },
+    {
+      "case": "secrets-fixed",
+      "expected": 0,
+      "actual": 0,
+      "rules": [],
+      "median_ms": 0.0540499750059098,
+      "p95_ms": 0.0648999703116715,
+      "min_ms": 0.052499992307275534,
+      "max_ms": 0.07489998824894428,
+      "coverage": {
+        "source_files": 1,
+        "parsed_files": 1,
+        "javascript_files": 1,
+        "python_files": 0,
+        "client_config_files": 0,
+        "routes": 0,
+        "resolved_routes": 0,
+        "functions": 0
+      },
+      "repetitions": 30
+    },
+    {
+      "case": "secrets-vulnerable",
+      "expected": 1,
+      "actual": 1,
+      "rules": [
+        "SEC001"
+      ],
+      "median_ms": 0.0803999719209969,
+      "p95_ms": 0.09169999975711107,
+      "min_ms": 0.07850001566112041,
+      "max_ms": 0.10040000779554248,
+      "coverage": {
+        "source_files": 1,
+        "parsed_files": 1,
+        "javascript_files": 1,
+        "python_files": 0,
+        "client_config_files": 0,
+        "routes": 0,
+        "resolved_routes": 0,
+        "functions": 0
+      },
+      "repetitions": 30
+    }
+  ],
+  "archive": {
+    "file": "artifacts/taskforge-final-report.json",
+    "sha256": "66cb3111ffed44bac8b8dfeba53f67c74ef46b930c3fdb7d74301854fade6a48",
+    "scan_date": "2026-09-08T09:47:12.538163+00:00",
+    "commit": "4360fa0e5f6dd9ff9f636680dafd57031324f8c4",
+    "coverage": {
+      "source_files": 6,
+      "parsed_files": 1,
+      "routes": 19,
+      "resolved_routes": 19,
+      "functions": 15
+    },
+    "duration_seconds": 268.64,
+    "categories": {
+      "authorization": 16
+    },
+    "rules": {
+      "BOLA001": 16
+    },
+    "summary": {
+      "total": 16,
+      "critical": 0,
+      "high": 16,
+      "medium": 0,
+      "low": 0
+    },
+    "model_status": "completed",
+    "retrieval_modes": [
+      "pgvector"
+    ],
+    "llm_status": {
+      "accepted": 16
+    }
+  }
+}

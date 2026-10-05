@@ -16,7 +16,7 @@ class Finding(BaseModel):
     id: str
     rule_id: str
     title: str
-    category: Literal["authorization", "injection", "secrets", "configuration"]
+    category: Literal["authorization", "business_logic", "injection", "secrets", "configuration"]
     severity: Literal["critical", "high", "medium", "low"]
     confidence: float = Field(ge=0, le=1)
     route: str | None = None
@@ -27,6 +27,9 @@ class Finding(BaseModel):
     attack_path: list[str] = Field(default_factory=list)
     evidence: list[Evidence]
     references: list[dict] = Field(default_factory=list)
+    # The deterministic INVARIANT ledger records why a candidate passed its
+    # evidence gate. It is intentionally separate from optional model prose.
+    algorithm: dict | None = None
     verification: str = "static-evidence-verified"
     reasoning: dict | None = None
     review_status: Literal["open", "confirmed", "dismissed"] = "open"

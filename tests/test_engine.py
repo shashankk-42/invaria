@@ -1,9 +1,10 @@
 import json
 from pathlib import Path
 
+import httpx
 import pytest
 from invaria.engine import analyze, verify
-from invaria.ingestion import inventory, parse_github_url
+from invaria.ingestion import inventory, parse_github_url, verify_public_github_repository
 from invaria.reasoning import validate_reasoning
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -103,6 +104,39 @@ def test_secret_is_redacted():
     assert "[REDACTED]" in finding.evidence[0].snippet
 
 
+def test_python_credential_fallback_is_reported_with_redacted_evidence():
+    report = analyze(
+        {
+            "settings.py": (
+                'import os\n'
+                'JWT_SECRET = os.getenv("JWT_SECRET", "local-development-secret-value")\n'
+            )
+        }
+    )
+    finding = report["findings"][0]
+    assert finding.rule_id == "CFG001"
+    assert finding.category == "configuration"
+    assert report["coverage"]["python_files"] == 1
+    assert "[REDACTED]" in finding.evidence[0].snippet
+
+
+def test_anonymous_firebase_write_requires_external_rule_review():
+    report = analyze(
+        {
+            "dashboard.html": (
+                "async function save(db, value) { "
+                "await signInAnonymously(auth); "
+                "await addDoc(collection(db, 'comments'), {value}); }"
+            )
+        }
+    )
+    finding = report["findings"][0]
+    assert finding.rule_id == "FBA001"
+    assert finding.category == "authorization"
+    assert len(finding.evidence) == 2
+    assert report["coverage"]["client_config_files"] == 1
+
+
 def test_fabricated_model_reference_rejected():
     finding = analyze(inventory(ROOT / "fixtures/bola-vulnerable")[0])["findings"][0]
     raw = {
@@ -141,3 +175,22 @@ def test_github_url():
     assert parse_github_url(
         "https://github.com/shashankk-42/taskforge-decentralized-compute-marketplace.git"
     ) == ("shashankk-42", "taskforge-decentralized-compute-marketplace")
+
+
+def test_missing_github_repository_has_actionable_message(monkeypatch):
+    class Client:
+        def __init__(self, **_kwargs):
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return False
+
+        def get(self, *_args, **_kwargs):
+            return httpx.Response(404, headers={"X-RateLimit-Remaining": "59"})
+
+    monkeypatch.setattr("invaria.ingestion.httpx.Client", Client)
+    with pytest.raises(ValueError, match="cannot find the public repository owner/missing"):
+        verify_public_github_repository("https://github.com/owner/missing")
